@@ -17,7 +17,9 @@ COPY packages/types/package.json ./packages/types/
 COPY apps/backend/package.json ./apps/backend/
 
 # Install ALL dependencies (including devDeps like prisma CLI, @nestjs/cli, typescript)
-RUN pnpm install --frozen-lockfile --no-optional
+# --ignore-scripts: prevent postinstall hooks (prisma generate) from running
+# before source code is copied. We run prisma generate explicitly after COPY.
+RUN pnpm install --frozen-lockfile --no-optional --ignore-scripts
 
 # Copy all source code
 COPY . .
