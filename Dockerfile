@@ -11,8 +11,8 @@ RUN npm install -g pnpm@8.15.1
 
 WORKDIR /app
 
-# Copy workspace manifests first (for layer caching)
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+# Copy workspace manifests + .npmrc first (for layer caching)
+COPY .npmrc package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY packages/database/package.json ./packages/database/
 COPY packages/types/package.json ./packages/types/
 COPY apps/backend/package.json ./apps/backend/
