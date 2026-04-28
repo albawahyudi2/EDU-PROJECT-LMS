@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
-import graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.mjs';
+import { graphqlUploadExpress } from 'graphql-upload-ts';
 
 async function bootstrap() {
   // For development: bypass SSL verification for R2

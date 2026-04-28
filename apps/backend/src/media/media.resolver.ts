@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
-import GraphQLUpload from 'graphql-upload/GraphQLUpload.mjs';
+import { GraphQLUpload } from 'graphql-upload-ts';
 import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { MediaService } from './media.service';
