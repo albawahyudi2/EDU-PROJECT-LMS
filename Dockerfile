@@ -63,6 +63,13 @@ COPY --from=builder /app/packages/types ./packages/types
 COPY --from=builder /app/packages/database/index.js ./packages/database/index.js
 COPY --from=builder /app/packages/database/index.d.ts ./packages/database/index.d.ts
 
+# Recreate workspace package symlinks that break during Docker COPY
+# (pnpm symlinks point outside node_modules/ to ../../packages/)
+RUN mkdir -p node_modules/@lms && \
+    rm -rf node_modules/@lms/database node_modules/@lms/types && \
+    ln -s ../../packages/database node_modules/@lms/database && \
+    ln -s ../../packages/types node_modules/@lms/types
+
 # Expose backend port
 EXPOSE 3001
 
