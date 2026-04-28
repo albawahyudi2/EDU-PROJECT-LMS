@@ -108,6 +108,11 @@ See: RENDER-QUICK-START.md
 vercel --prod
 ```
 
+For the Vercel project settings, keep the repository root as the project root and use the build command from `vercel.json`. Set these environment variables in Vercel:
+
+- `NEXT_PUBLIC_API_URL` = your Railway backend base URL, for example `https://your-backend.up.railway.app`
+- `NEXT_PUBLIC_APP_URL` = your Vercel domain, for example `https://your-project.vercel.app`
+
 ### Documentation
 
 - 📖 **[Render Quick Start](./RENDER-QUICK-START.md)** - 5 minute setup
