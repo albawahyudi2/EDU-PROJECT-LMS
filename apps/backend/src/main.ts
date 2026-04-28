@@ -15,23 +15,37 @@ async function bootstrap() {
   // Enable GraphQL file upload (before any other middleware)
   app.use(graphqlUploadExpress({ maxFileSize: 25 * 1024 * 1024, maxFiles: 10 }));
   
-  // Enable CORS — allow Vercel frontend + localhost dev
+  // Enable CORS — allow configured frontend origins + localhost dev
   const allowedOrigins = [
     process.env.FRONTEND_URL,
     process.env.NEXT_PUBLIC_APP_URL,
+    process.env.CORS_ORIGIN,
+    // support comma-separated list in CORS_ORIGINS env var
+    ...(process.env.CORS_ORIGINS ? process.env.CORS_ORIGINS.split(',') : []),
     'http://localhost:3000',
-  ].filter(Boolean) as string[];
+  ]
+    .filter(Boolean)
+    .map((s) => s.trim()) as string[];
 
   app.enableCors({
     origin: (origin, callback) => {
       // Allow requests with no origin (mobile apps, curl, health checks)
-      if (!origin || allowedOrigins.some(allowed => origin.startsWith(allowed))) {
-        callback(null, true);
-      } else {
-        console.warn(`⚠️ CORS blocked origin: ${origin}`);
-        callback(null, false);
+      if (!origin) return callback(null, true);
+
+      for (const allowed of allowedOrigins) {
+        if (allowed === '*') return callback(null, true);
+        try {
+          if (origin.startsWith(allowed)) return callback(null, true);
+        } catch (e) {
+          // ignore malformed allowed origin
+        }
       }
+
+      console.warn(`⚠️ CORS blocked origin: ${origin}`);
+      callback(null, false);
     },
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    allowedHeaders: 'Content-Type, Authorization, Accept',
     credentials: true,
   });
   
