@@ -80,5 +80,5 @@ ENV NODE_ENV=production
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
   CMD wget -qO- http://localhost:3001/health || exit 1
 
-# Run migrations then start the application
-CMD ["sh", "-c", "npx prisma migrate deploy --schema=packages/database/prisma/schema.prisma && node apps/backend/dist/main.js"]
+# Start the application (migrations are run locally before deploy)
+CMD ["node", "apps/backend/dist/main.js"]

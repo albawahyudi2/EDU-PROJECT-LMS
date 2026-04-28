@@ -1,147 +1,38 @@
-Build Logs
-
-2026-04-28T09:24:14.276682187Z [inf]  
-2026-04-28T09:24:15.881218184Z [inf]  [35m[Region: us-east4][0m
-2026-04-28T09:24:15.920451869Z [inf]  [35m=========================
-2026-04-28T09:24:15.920490967Z [inf]  Using Detected Dockerfile
-2026-04-28T09:24:15.920495333Z [inf]  =========================
-2026-04-28T09:24:15.920499167Z [inf]  [0m
-2026-04-28T09:24:15.920512951Z [inf]  context: dq1b-oCD2
-2026-04-28T09:24:16.094473281Z [inf]  [internal] load build definition from Dockerfile
-2026-04-28T09:24:16.094538345Z [inf]  [internal] load build definition from Dockerfile
-2026-04-28T09:24:16.094557236Z [inf]  [internal] load build definition from Dockerfile
-2026-04-28T09:24:16.105011672Z [inf]  [internal] load build definition from Dockerfile
-2026-04-28T09:24:16.106626190Z [inf]  [internal] load metadata for docker.io/library/node:18-alpine
-2026-04-28T09:24:16.115854786Z [inf]  [auth] library/node:pull token for registry-1.docker.io
-2026-04-28T09:24:16.115940525Z [inf]  [auth] library/node:pull token for registry-1.docker.io
-2026-04-28T09:24:16.246728634Z [inf]  [internal] load metadata for docker.io/library/node:18-alpine
-2026-04-28T09:24:16.246897862Z [inf]  [internal] load .dockerignore
-2026-04-28T09:24:16.247606328Z [inf]  [internal] load .dockerignore
-2026-04-28T09:24:16.247644323Z [inf]  [internal] load .dockerignore
-2026-04-28T09:24:16.258209697Z [inf]  [internal] load .dockerignore
-2026-04-28T09:24:16.263322767Z [inf]  [builder  9/13] COPY packages/database/prisma/schema.prisma ./packages/database/prisma/schema.prisma
-2026-04-28T09:24:16.263363453Z [inf]  [builder  8/13] COPY apps/backend/package.json ./apps/backend/
-2026-04-28T09:24:16.263372437Z [inf]  [builder  7/13] COPY packages/types/package.json ./packages/types/
-2026-04-28T09:24:16.263380834Z [inf]  [builder  6/13] COPY packages/database/package.json ./packages/database/
-2026-04-28T09:24:16.263386548Z [inf]  [builder  5/13] COPY .npmrc package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-2026-04-28T09:24:16.263394671Z [inf]  [internal] load build context
-2026-04-28T09:24:16.263401330Z [inf]  [builder  4/13] WORKDIR /app
-2026-04-28T09:24:16.263407407Z [inf]  [builder  3/13] RUN npm install -g pnpm@8.15.1
-2026-04-28T09:24:16.263415246Z [inf]  [runner  3/14] WORKDIR /app
-2026-04-28T09:24:16.263421029Z [inf]  [builder  2/13] RUN apk add --no-cache openssl
-2026-04-28T09:24:16.263426194Z [inf]  [builder  1/13] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
-2026-04-28T09:24:16.264189624Z [inf]  [runner 11/14] COPY --from=builder /app/packages/types ./packages/types
-2026-04-28T09:24:16.264221848Z [inf]  [runner 10/14] COPY --from=builder /app/packages/database/prisma ./packages/database/prisma
-2026-04-28T09:24:16.264237729Z [inf]  [runner  9/14] COPY --from=builder /app/apps/backend/dist ./apps/backend/dist
-2026-04-28T09:24:16.264245729Z [inf]  [runner  8/14] COPY --from=builder /app/node_modules ./node_modules
-2026-04-28T09:24:16.264252785Z [inf]  [runner  7/14] COPY --from=builder /app/apps/backend/package.json ./apps/backend/
-2026-04-28T09:24:16.264259104Z [inf]  [builder 10/13] RUN pnpm install --frozen-lockfile
-2026-04-28T09:24:16.264267508Z [inf]  [runner  5/14] COPY --from=builder /app/packages/database/package.json ./packages/database/
-2026-04-28T09:24:16.264277438Z [inf]  [runner  4/14] COPY --from=builder /app/package.json ./
-2026-04-28T09:24:16.264288593Z [inf]  [builder 13/13] RUN pnpm --filter @lms/backend exec nest build
-2026-04-28T09:24:16.264300201Z [inf]  [builder 12/13] RUN pnpm --filter @lms/database exec prisma generate
-2026-04-28T09:24:16.264311499Z [inf]  [builder 11/13] COPY . .
-2026-04-28T09:24:16.264321079Z [inf]  [runner 12/14] COPY --from=builder /app/packages/database/index.js ./packages/database/index.js
-2026-04-28T09:24:16.264330642Z [inf]  [runner  6/14] COPY --from=builder /app/packages/types/package.json ./packages/types/
-2026-04-28T09:24:16.264583286Z [inf]  [runner 14/14] RUN mkdir -p node_modules/@lms &&     rm -rf node_modules/@lms/database node_modules/@lms/types &&     ln -s ../../packages/database node_modules/@lms/database &&     ln -s ../../packages/types node_modules/@lms/types
-2026-04-28T09:24:16.264603286Z [inf]  [runner 13/14] COPY --from=builder /app/packages/database/index.d.ts ./packages/database/index.d.ts
-2026-04-28T09:24:16.264699234Z [inf]  [internal] load build context
-2026-04-28T09:24:16.264919911Z [inf]  [builder  1/13] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
-2026-04-28T09:24:16.270870886Z [inf]  [builder  1/13] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
-2026-04-28T09:24:16.271214839Z [inf]  [internal] load build context
-2026-04-28T09:24:16.301748840Z [inf]  [internal] load build context
-2026-04-28T09:24:16.306272952Z [inf]  [builder  2/13] RUN apk add --no-cache openssl
-2026-04-28T09:24:16.306313388Z [inf]  [builder  3/13] RUN npm install -g pnpm@8.15.1
-2026-04-28T09:24:16.306323962Z [inf]  [builder  4/13] WORKDIR /app
-2026-04-28T09:24:16.306332209Z [inf]  [builder  5/13] COPY .npmrc package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-2026-04-28T09:24:16.306339376Z [inf]  [builder  6/13] COPY packages/database/package.json ./packages/database/
-2026-04-28T09:24:16.306348539Z [inf]  [builder  7/13] COPY packages/types/package.json ./packages/types/
-2026-04-28T09:24:16.306355046Z [inf]  [builder  8/13] COPY apps/backend/package.json ./apps/backend/
-2026-04-28T09:24:16.306363945Z [inf]  [builder  9/13] COPY packages/database/prisma/schema.prisma ./packages/database/prisma/schema.prisma
-2026-04-28T09:24:16.306374294Z [inf]  [builder 10/13] RUN pnpm install --frozen-lockfile
-2026-04-28T09:24:16.306388926Z [inf]  [builder 11/13] COPY . .
-2026-04-28T09:24:16.423252832Z [inf]  [builder 11/13] COPY . .
-2026-04-28T09:24:16.424198403Z [inf]  [builder 12/13] RUN pnpm --filter @lms/database exec prisma generate
-2026-04-28T09:24:17.76578615Z [inf]  Prisma schema loaded from prisma/schema.prisma
-
-2026-04-28T09:24:18.687056971Z [inf]  
-✔ Generated Prisma Client (4.16.2 | library) to ./../../node_modules/@prisma/client in 356ms
-You can now start using Prisma Client in your code. Reference: https://pris.ly/d/client
-```
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
-```
-
-2026-04-28T09:24:18.731676533Z [inf]  ┌─────────────────────────────────────────────────────────┐
-│  Update available 4.16.2 -> 7.8.0                       │
-│                                                         │
-│  This is a major update - please follow the guide at    │
-│  https://pris.ly/d/major-version-upgrade                │
-│                                                         │
-│  Run the following to update                            │
-│    npm i --save-dev prisma@latest                       │
-│    npm i @prisma/client@latest                          │
-└─────────────────────────────────────────────────────────┘
-
-2026-04-28T09:24:18.889670569Z [inf]  [builder 12/13] RUN pnpm --filter @lms/database exec prisma generate
-2026-04-28T09:24:18.890324133Z [inf]  [builder 13/13] RUN pnpm --filter @lms/backend exec nest build
-2026-04-28T09:24:25.872411427Z [inf]  [builder 13/13] RUN pnpm --filter @lms/backend exec nest build
-2026-04-28T09:24:39.992369038Z [inf]  [runner  3/14] WORKDIR /app
-2026-04-28T09:24:39.992397663Z [inf]  [runner  4/14] COPY --from=builder /app/package.json ./
-2026-04-28T09:24:39.992414884Z [inf]  [runner  5/14] COPY --from=builder /app/packages/database/package.json ./packages/database/
-2026-04-28T09:24:39.992422363Z [inf]  [runner  6/14] COPY --from=builder /app/packages/types/package.json ./packages/types/
-2026-04-28T09:24:39.992429292Z [inf]  [runner  7/14] COPY --from=builder /app/apps/backend/package.json ./apps/backend/
-2026-04-28T09:24:39.992436201Z [inf]  [runner  8/14] COPY --from=builder /app/node_modules ./node_modules
-2026-04-28T09:24:39.992443089Z [inf]  [runner  9/14] COPY --from=builder /app/apps/backend/dist ./apps/backend/dist
-2026-04-28T09:24:39.992734436Z [inf]  [runner 10/14] COPY --from=builder /app/packages/database/prisma ./packages/database/prisma
-2026-04-28T09:24:40.388812451Z [inf]  [runner 10/14] COPY --from=builder /app/packages/database/prisma ./packages/database/prisma
-2026-04-28T09:24:40.391079452Z [inf]  [runner 11/14] COPY --from=builder /app/packages/types ./packages/types
-2026-04-28T09:24:40.406618451Z [inf]  [runner 11/14] COPY --from=builder /app/packages/types ./packages/types
-2026-04-28T09:24:40.407578881Z [inf]  [runner 12/14] COPY --from=builder /app/packages/database/index.js ./packages/database/index.js
-2026-04-28T09:24:40.417515917Z [inf]  [runner 12/14] COPY --from=builder /app/packages/database/index.js ./packages/database/index.js
-2026-04-28T09:24:40.418399813Z [inf]  [runner 13/14] COPY --from=builder /app/packages/database/index.d.ts ./packages/database/index.d.ts
-2026-04-28T09:24:40.430587914Z [inf]  [runner 13/14] COPY --from=builder /app/packages/database/index.d.ts ./packages/database/index.d.ts
-2026-04-28T09:24:40.431614792Z [inf]  [runner 14/14] RUN mkdir -p node_modules/@lms &&     rm -rf node_modules/@lms/database node_modules/@lms/types &&     ln -s ../../packages/database node_modules/@lms/database &&     ln -s ../../packages/types node_modules/@lms/types
-2026-04-28T09:24:40.516260938Z [inf]  [runner 14/14] RUN mkdir -p node_modules/@lms &&     rm -rf node_modules/@lms/database node_modules/@lms/types &&     ln -s ../../packages/database node_modules/@lms/database &&     ln -s ../../packages/types node_modules/@lms/types
-2026-04-28T09:24:40.517872029Z [inf]  exporting to docker image format
-2026-04-28T09:24:40.517918228Z [inf]  exporting to image
-2026-04-28T09:24:40.705371817Z [inf]  [auth] sharing credentials for production-us-east4-eqdc4a.railway-registry.com
-2026-04-28T09:24:40.705424841Z [inf]  [auth] sharing credentials for production-us-east4-eqdc4a.railway-registry.com
-2026-04-28T09:24:41.924651406Z [inf]  importing to docker
-2026-04-28T09:24:56.317826691Z [inf]  importing to docker
-2026-04-28T09:24:56.418381708Z [inf]  [92mBuild time: 40.50 seconds[0m
-
-Deploy Logs
-
-2026-04-28T09:25:07.702286541Z [inf]  Starting Container
-2026-04-28T09:25:09.338403998Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-04-28T09:25:09.338409546Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "aws-1-ap-southeast-1.pooler.supabase.com:6543"
-
-HTTP Logs
-
-You reached the start of the range
-Apr 28, 2026, 4:24 PM
-HEAD
-/health
-502
-648ms
-GET
-/health
-502
-643ms
-HEAD
-/health
-502
-640ms
-GET
-/health
-502
-640ms
-GET
-/
-502
-674ms
-GET
-/favicon.ico
-502
-673ms
+2026-04-28T09:45:27.345435413Z [inf]  Starting Container
+2026-04-28T09:45:27.968507052Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-04-28T09:45:27.968516932Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-04-28T09:45:27.968528402Z [err]  npm notice New major version of npm available! 10.8.2 -> 11.13.0
+2026-04-28T09:45:27.968533532Z [err]  npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.13.0
+2026-04-28T09:45:27.968539072Z [err]  npm notice To update run: npm install -g npm@11.13.0
+2026-04-28T09:45:29.939638719Z [err]  
+2026-04-28T09:45:29.939669088Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-04-28T09:45:29.939673308Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-04-28T09:45:29.939676718Z [inf]  
+2026-04-28T09:45:29.939680318Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-04-28T09:45:31.462628736Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-04-28T09:45:31.510741549Z [inf]  
+2026-04-28T09:45:31.510753699Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-04-28T09:45:31.510758529Z [err]  
+2026-04-28T09:45:31.510762649Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-04-28T09:45:33.154627452Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-04-28T09:45:33.159003552Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-04-28T09:45:33.197835014Z [inf]  
+2026-04-28T09:45:33.197839844Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-04-28T09:45:33.197846834Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-04-28T09:45:34.934014334Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-04-28T09:45:34.934053803Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-04-28T09:45:34.934058733Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-04-28T09:45:34.934070453Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-04-28T09:45:36.941029804Z [inf]  
+2026-04-28T09:45:38.238781825Z [err]  
+2026-04-28T09:45:38.238846804Z [inf]  
+2026-04-28T09:45:39.933312792Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-04-28T09:45:41.919573447Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-04-28T09:45:41.955728232Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-04-28T09:45:43.547968516Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-04-28T09:45:43.555031663Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-04-28T09:45:43.593009842Z [inf]  
+2026-04-28T09:45:43.593014712Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-04-28T09:45:43.593024842Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-04-28T09:45:45.239075254Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-04-28T09:45:45.299891339Z [inf]  
