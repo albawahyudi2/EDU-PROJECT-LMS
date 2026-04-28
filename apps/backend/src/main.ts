@@ -25,12 +25,22 @@ async function bootstrap() {
   app.enableCors({
     origin: (origin, callback) => {
       // Allow requests with no origin (mobile apps, curl, health checks)
-      if (!origin || allowedOrigins.some(allowed => origin.startsWith(allowed))) {
+      if (!origin) {
         callback(null, true);
-      } else {
-        console.warn(`⚠️ CORS blocked origin: ${origin}`);
-        callback(null, false);
+        return;
       }
+      // Allow all Vercel preview/production URLs
+      if (origin.endsWith('.vercel.app')) {
+        callback(null, true);
+        return;
+      }
+      // Allow configured origins
+      if (allowedOrigins.some(allowed => origin.startsWith(allowed))) {
+        callback(null, true);
+        return;
+      }
+      console.warn(`⚠️ CORS blocked origin: ${origin}`);
+      callback(null, false);
     },
     credentials: true,
   });

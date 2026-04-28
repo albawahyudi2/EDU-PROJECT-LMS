@@ -1,38 +1,30 @@
-2026-04-28T09:45:27.345435413Z [inf]  Starting Container
-2026-04-28T09:45:27.968507052Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-04-28T09:45:27.968516932Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-04-28T09:45:27.968528402Z [err]  npm notice New major version of npm available! 10.8.2 -> 11.13.0
-2026-04-28T09:45:27.968533532Z [err]  npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.13.0
-2026-04-28T09:45:27.968539072Z [err]  npm notice To update run: npm install -g npm@11.13.0
-2026-04-28T09:45:29.939638719Z [err]  
-2026-04-28T09:45:29.939669088Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-04-28T09:45:29.939673308Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-04-28T09:45:29.939676718Z [inf]  
-2026-04-28T09:45:29.939680318Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-04-28T09:45:31.462628736Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-04-28T09:45:31.510741549Z [inf]  
-2026-04-28T09:45:31.510753699Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-04-28T09:45:31.510758529Z [err]  
-2026-04-28T09:45:31.510762649Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-04-28T09:45:33.154627452Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-04-28T09:45:33.159003552Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-04-28T09:45:33.197835014Z [inf]  
-2026-04-28T09:45:33.197839844Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-04-28T09:45:33.197846834Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-04-28T09:45:34.934014334Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-04-28T09:45:34.934053803Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-04-28T09:45:34.934058733Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-04-28T09:45:34.934070453Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-04-28T09:45:36.941029804Z [inf]  
-2026-04-28T09:45:38.238781825Z [err]  
-2026-04-28T09:45:38.238846804Z [inf]  
-2026-04-28T09:45:39.933312792Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-04-28T09:45:41.919573447Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-04-28T09:45:41.955728232Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-04-28T09:45:43.547968516Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-04-28T09:45:43.555031663Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-04-28T09:45:43.593009842Z [inf]  
-2026-04-28T09:45:43.593014712Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-04-28T09:45:43.593024842Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-04-28T09:45:45.239075254Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-04-28T09:45:45.299891339Z [inf]  
+2026-04-28T09:48:12.882379790Z [inf]  Starting Container
+2026-04-28T09:48:14.946821315Z [inf]  [32m[Nest] 1  - [39m04/28/2026, 9:48:13 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mClassroomsModule dependencies initialized[39m[38;5;3m +0ms[39m
+2026-04-28T09:48:14.946835900Z [inf]  [32m[Nest] 1  - [39m04/28/2026, 9:48:13 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mR2Module dependencies initialized[39m[38;5;3m +0ms[39m
+2026-04-28T09:48:14.946840221Z [inf]  [32m[Nest] 1  - [39m04/28/2026, 9:48:13 AM [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+2026-04-28T09:48:14.946844935Z [inf]  [32m[Nest] 1  - [39m04/28/2026, 9:48:13 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mJwtModule dependencies initialized[39m[38;5;3m +1ms[39m
+2026-04-28T09:48:14.946850554Z [inf]  [32m[Nest] 1  - [39m04/28/2026, 9:48:13 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPrismaModule dependencies initialized[39m[38;5;3m +52ms[39m
+2026-04-28T09:48:14.946860001Z [inf]  [32m[Nest] 1  - [39m04/28/2026, 9:48:13 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPassportModule dependencies initialized[39m[38;5;3m +0ms[39m
+2026-04-28T09:48:14.946862011Z [inf]  [32m[Nest] 1  - [39m04/28/2026, 9:48:13 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNotesModule dependencies initialized[39m[38;5;3m +3ms[39m
+2026-04-28T09:48:14.946896420Z [inf]  [32m[Nest] 1  - [39m04/28/2026, 9:48:13 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDailyReportsModule dependencies initialized[39m[38;5;3m +0ms[39m
+2026-04-28T09:48:14.946909033Z [inf]  [32m[Nest] 1  - [39m04/28/2026, 9:48:13 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mProgressModule dependencies initialized[39m[38;5;3m +1ms[39m
+2026-04-28T09:48:16.182915517Z [inf]  [32m[Nest] 1  - [39m04/28/2026, 9:48:13 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/health, GET} route[39m[38;5;3m +3ms[39m
+2026-04-28T09:48:16.182927170Z [inf]  [32m[Nest] 1  - [39m04/28/2026, 9:48:13 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mModulesModule dependencies initialized[39m[38;5;3m +0ms[39m
+2026-04-28T09:48:16.183245842Z [inf]  [32m[Nest] 1  - [39m04/28/2026, 9:48:13 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mLessonsModule dependencies initialized[39m[38;5;3m +0ms[39m
+2026-04-28T09:48:16.183264265Z [inf]  [32m[Nest] 1  - [39m04/28/2026, 9:48:13 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMediaModule dependencies initialized[39m[38;5;3m +0ms[39m
+2026-04-28T09:48:16.183279160Z [inf]  [32m[Nest] 1  - [39m04/28/2026, 9:48:13 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mGraphQLSchemaBuilderModule dependencies initialized[39m[38;5;3m +0ms[39m
+2026-04-28T09:48:16.183294774Z [inf]  [32m[Nest] 1  - [39m04/28/2026, 9:48:13 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAuthModule dependencies initialized[39m[38;5;3m +0ms[39m
+2026-04-28T09:48:16.183302284Z [inf]  [32m[Nest] 1  - [39m04/28/2026, 9:48:13 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mGraphQLModule dependencies initialized[39m[38;5;3m +1ms[39m
+2026-04-28T09:48:17.245342373Z [err]  updates please upgrade to a supported Node.js LTS version.
+2026-04-28T09:48:17.245361825Z [err]  More information can be found at: https://a.co/c895JFp
+2026-04-28T09:48:17.245368215Z [err]  (Use `node --trace-warnings ...` to show where the warning was created)
+2026-04-28T09:48:17.245378975Z [inf]  ✅ Database connected
+2026-04-28T09:48:17.245385523Z [inf]  [32m[Nest] 1  - [39m04/28/2026, 9:48:16 AM [32m    LOG[39m [38;5;3m[GraphQLModule] [39m[32mMapped {/graphql, POST} route[39m[38;5;3m +2232ms[39m
+2026-04-28T09:48:17.245406760Z [err]  (node:1) Warning: NodeDeprecationWarning: The AWS SDK for JavaScript (v3) will
+2026-04-28T09:48:17.245422686Z [err]  
+2026-04-28T09:48:17.245429615Z [err]  To continue receiving updates to AWS services, bug fixes, and security
+2026-04-28T09:48:18.059372546Z [inf]  ✅ Database connected
+2026-04-28T09:48:19.178457147Z [inf]  ✅ Database connected
+2026-04-28T09:48:19.183791467Z [inf]  [32m[Nest] 1  - [39m04/28/2026, 9:48:19 AM [32m    LOG[39m [38;5;3m[NestApplication] [39m[32mNest application successfully started[39m[38;5;3m +3061ms[39m
+2026-04-28T09:48:19.183804024Z [inf]  🚀 Backend API running on: http://localhost:8080
+2026-04-28T09:48:19.183811381Z [inf]  📊 GraphQL Playground: http://localhost:8080/graphql
