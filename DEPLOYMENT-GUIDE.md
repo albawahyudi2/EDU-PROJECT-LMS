@@ -3,9 +3,12 @@
 ## Overview
 Panduan lengkap untuk deploy aplikasi LMS ke production:
 - **Frontend**: Vercel
-- **Backend**: Railway
+- **Backend**: **Render** (Recommended) atau Railway
 - **Database**: Neon PostgreSQL (sudah ada)
 - **Storage**: Cloudflare R2 (sudah ada)
+
+> ⚠️ **Update March 2026**: Railway free tier sering error. **Gunakan Render untuk deployment yang lebih stabil**.  
+> 📖 **Panduan Render**: Lihat [RENDER-DEPLOYMENT-GUIDE.md](./RENDER-DEPLOYMENT-GUIDE.md)
 
 ---
 

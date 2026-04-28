@@ -77,7 +77,9 @@ export class UsersService {
       const student = await tx.student.create({
         data: {
           userId: user.id,
-          parentId: user.id,
+          // parentId is null by default: a single account represents both student and parent.
+          // A separate parent link can be established later if needed.
+          parentId: null,
           level: 1,
           totalXP: 0,
           currentXP: 0,

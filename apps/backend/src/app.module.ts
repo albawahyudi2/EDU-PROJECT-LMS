@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
-import graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.mjs';
 import { PrismaModule } from './prisma/prisma.module';
 import { HealthResolver } from './health/health.resolver';
+import { HealthController } from './health/health.controller';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ClassroomsModule } from './classrooms/classrooms.module';
@@ -22,9 +22,11 @@ import { R2Module } from './r2/r2.module';
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      autoSchemaFile: join(__dirname, 'schema.gql'),
       sortSchema: true,
       playground: process.env.NODE_ENV !== 'production',
+      // Hide stacktraces in production to prevent security leaks
+      includeStacktraceInErrorResponses: process.env.NODE_ENV !== 'production',
       context: ({ req, res }) => ({ req, res }),
     }),
     PrismaModule,
@@ -41,6 +43,7 @@ import { R2Module } from './r2/r2.module';
     R2Module,
     MediaModule,
   ],
+  controllers: [HealthController],
   providers: [HealthResolver],
 })
 export class AppModule {}

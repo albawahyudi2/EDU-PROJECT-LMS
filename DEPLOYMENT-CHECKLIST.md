@@ -1,5 +1,8 @@
 # ✅ Deployment Checklist
 
+> **Update March 2026**: Gunakan Render untuk deployment (lebih stabil dari Railway)  
+> 📖 Guide: [RENDER-DEPLOYMENT-GUIDE.md](./RENDER-DEPLOYMENT-GUIDE.md) | Quick: [RENDER-QUICK-START.md](./RENDER-QUICK-START.md)
+
 ## Pre-Deployment
 
 ### Code Quality
@@ -13,7 +16,7 @@
 
 ### Environment Setup
 - [ ] Vercel account created
-- [ ] Railway account created
+- [ ] Render account created (recommended)
 - [x] Neon PostgreSQL database ready
 - [x] Cloudflare R2 bucket configured
 - [ ] All environment variables documented
@@ -27,7 +30,52 @@
 
 ---
 
-## Railway Backend Deployment
+## Render Backend Deployment (Recommended)
+
+### Setup
+- [ ] Render account connected to GitHub
+- [ ] New Web Service created
+- [ ] Repository connected (Kadalzz/Edu_Project_LMS)
+- [ ] Region set to Singapore
+- [ ] Runtime set to Docker
+- [ ] Dockerfile path: ./Dockerfile
+
+### Configuration
+- [ ] Plan: Free tier selected
+- [ ] Health check path: /health
+- [ ] Auto-deploy from main branch enabled
+- [ ] All environment variables added (10 required)
+  - [ ] NODE_ENV=production
+  - [ ] PORT=3001
+  - [ ] DATABASE_URL (from Neon)
+  - [ ] JWT_SECRET (NEW, generated)
+  - [ ] JWT_REFRESH_SECRET (NEW, generated)
+  - [ ] R2_ACCOUNT_ID
+  - [ ] R2_ACCESS_KEY_ID
+  - [ ] R2_SECRET_ACCESS_KEY
+  - [ ] R2_BUCKET_NAME
+  - [ ] R2_PUBLIC_URL
+  - [ ] NEXT_PUBLIC_APP_URL
+
+### Deployment
+- [ ] First deployment triggered
+- [ ] Build completed successfully (~5-10 min)
+- [ ] Service status: Live (green)
+- [ ] Public URL obtained (https://lms-backend-xxxx.onrender.com)
+- [ ] Health endpoint accessible
+- [ ] GraphQL playground accessible
+
+### Testing
+- [ ] Backend health check: `curl https://lms-backend-xxxx.onrender.com/health`
+- [ ] GraphQL endpoint responding
+- [ ] Database connection working
+- [ ] Can query users
+- [ ] Can query classrooms
+- [ ] File upload working (R2)
+
+---
+
+## Railway Backend Deployment (Legacy - Optional)
 
 ### Setup
 - [ ] Railway account connected to GitHub

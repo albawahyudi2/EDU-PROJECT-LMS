@@ -5,13 +5,14 @@ async function testClassroomsList() {
   
   // Login as teacher
   const loginMutation = `
-    mutation Login($email: String!, $password: String!) {
-      login(email: $email, password: $password) {
+    mutation Login($input: LoginInput!) {
+      login(input: $input) {
         accessToken
         user {
           id
           email
           role
+          teacherName
         }
       }
     }
@@ -24,8 +25,10 @@ async function testClassroomsList() {
       body: JSON.stringify({
         query: loginMutation,
         variables: {
-          email: 'guru@lms-abk.com',
-          password: 'Guru123!'
+          input: {
+            email: 'guru@lms-abk.com',
+            password: 'Guru123!'
+          }
         }
       })
     });

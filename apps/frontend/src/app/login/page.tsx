@@ -72,7 +72,11 @@ export default function LoginPage() {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               {/* Error Alert */}
               {error && (
-                <div className="p-3 rounded-md bg-destructive/10 text-destructive text-sm">
+                <div 
+                  className="p-3 rounded-md bg-destructive/10 text-destructive text-sm" 
+                  role="alert"
+                  aria-live="polite"
+                >
                   {error}
                 </div>
               )}
@@ -87,9 +91,13 @@ export default function LoginPage() {
                   {...register('email')}
                   autoComplete="email"
                   autoFocus
+                  aria-invalid={errors.email ? 'true' : 'false'}
+                  aria-describedby={errors.email ? 'email-error' : undefined}
                 />
                 {errors.email && (
-                  <p className="text-sm text-destructive">{errors.email.message}</p>
+                  <p id="email-error" className="text-sm text-destructive" role="alert">
+                    {errors.email.message}
+                  </p>
                 )}
               </div>
 
@@ -103,11 +111,14 @@ export default function LoginPage() {
                     placeholder="Masukkan password"
                     {...register('password')}
                     autoComplete="current-password"
+                    aria-invalid={errors.password ? 'true' : 'false'}
+                    aria-describedby={errors.password ? 'password-error' : undefined}
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                    aria-label={showPassword ? 'Sembunyikan password' : 'Tampilkan password'}
                   >
                     {showPassword ? (
                       <EyeOff className="h-4 w-4" />
@@ -117,7 +128,9 @@ export default function LoginPage() {
                   </button>
                 </div>
                 {errors.password && (
-                  <p className="text-sm text-destructive">{errors.password.message}</p>
+                  <p id="password-error" className="text-sm text-destructive" role="alert">
+                    {errors.password.message}
+                  </p>
                 )}
               </div>
 
@@ -125,7 +138,8 @@ export default function LoginPage() {
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? (
                   <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />
+                    <span className="sr-only" aria-live="polite">Sedang memproses login...</span>
                     Memproses...
                   </>
                 ) : (

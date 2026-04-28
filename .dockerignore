@@ -1,0 +1,54 @@
+# Dependencies - will be installed fresh inside Docker
+node_modules
+**/node_modules
+
+# Build outputs - will be rebuilt inside Docker
+dist
+**/dist
+.next
+**/.next
+out
+
+# Version control
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment files (set via Railway dashboard, not baked into image)
+.env
+.env.local
+.env.production
+.env.render
+.env*.local
+
+# Documentation (not needed in container)
+*.md
+!README.md
+
+# Test files
+test-*.js
+check-*.js
+verify-*.js
+backfill-*.js
+accessibility-audit.js
+coverage
+
+# Turbo cache
+.turbo
+
+# Frontend (only backend runs in Railway container)
+apps/frontend
+
+# Misc
+*.log
+npm-debug.log*
+pnpm-debug.log*

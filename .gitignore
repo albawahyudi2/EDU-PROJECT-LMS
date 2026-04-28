@@ -39,6 +39,10 @@ next-env.d.ts
 
 # Prisma
 prisma/migrations/
+*.db
+
+# Turbo
+.turbo/daemon/
 
 # IDE
 .vscode/*

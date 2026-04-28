@@ -15,9 +15,23 @@ async function bootstrap() {
   // Enable GraphQL file upload (before any other middleware)
   app.use(graphqlUploadExpress({ maxFileSize: 25 * 1024 * 1024, maxFiles: 10 }));
   
-  // Enable CORS
+  // Enable CORS — allow Vercel frontend + localhost dev
+  const allowedOrigins = [
+    process.env.FRONTEND_URL,
+    process.env.NEXT_PUBLIC_APP_URL,
+    'http://localhost:3000',
+  ].filter(Boolean) as string[];
+
   app.enableCors({
-    origin: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
+    origin: (origin, callback) => {
+      // Allow requests with no origin (mobile apps, curl, health checks)
+      if (!origin || allowedOrigins.some(allowed => origin.startsWith(allowed))) {
+        callback(null, true);
+      } else {
+        console.warn(`⚠️ CORS blocked origin: ${origin}`);
+        callback(null, false);
+      }
+    },
     credentials: true,
   });
   

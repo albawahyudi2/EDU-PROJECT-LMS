@@ -43,7 +43,7 @@ export default function DashboardLayout({
       <Navbar mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
       <div className="flex">
         <Sidebar mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 ml-0 lg:ml-64">
+        <main id="main-content" className="flex-1 p-4 sm:p-6 lg:p-8 ml-0 lg:ml-64">
           <div className="max-w-7xl mx-auto">
             {children}
           </div>

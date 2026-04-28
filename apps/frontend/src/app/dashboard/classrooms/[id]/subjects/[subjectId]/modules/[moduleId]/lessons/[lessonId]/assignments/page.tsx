@@ -73,6 +73,12 @@ export default function AssignmentsPage() {
       setNewType('QUIZ');
       setNewXpReward(10);
       setNewDueDate('');
+      alert('✅ Tugas berhasil dibuat!');
+    },
+    onError: (error: any) => {
+      console.error('Failed to create assignment:', error);
+      const errorMessage = error.response?.errors?.[0]?.message || error.message || 'Gagal membuat tugas';
+      alert(`❌ Error: ${errorMessage}`);
     },
   });
 
@@ -95,7 +101,18 @@ export default function AssignmentsPage() {
   });
 
   const handleCreate = () => {
-    if (!newTitle.trim()) return;
+    if (!newTitle.trim()) {
+      alert('Judul tugas harus diisi');
+      return;
+    }
+    
+    if (!lessonId) {
+      alert('Lesson ID tidak ditemukan. Silakan refresh halaman.');
+      return;
+    }
+    
+    console.log('Creating assignment with lessonId:', lessonId);
+    
     createMutation.mutate({
       title: newTitle.trim(),
       description: newDescription.trim() || undefined,

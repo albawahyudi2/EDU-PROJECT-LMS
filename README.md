@@ -88,6 +88,35 @@ pnpm db:push         # Push schema to database
 - 4 Siswa (Student-Parent combined accounts)
 - 1 Classroom
 
+## Deployment
+
+### Production Deployment
+
+**Recommended Stack:**
+- **Backend**: [Render](https://render.com) (Free tier, stable)
+- **Frontend**: [Vercel](https://vercel.com) (Free tier)
+- **Database**: [Neon](https://neon.tech) PostgreSQL (Free,永久)
+- **Storage**: [Cloudflare R2](https://cloudflare.com/r2) (Free tier)
+
+### Quick Deploy (5 minutes)
+
+```bash
+# 1. Deploy backend to Render
+See: RENDER-QUICK-START.md
+
+# 2. Deploy frontend to Vercel
+vercel --prod
+```
+
+### Documentation
+
+- 📖 **[Render Quick Start](./RENDER-QUICK-START.md)** - 5 minute setup
+- 📖 **[Render Full Guide](./RENDER-DEPLOYMENT-GUIDE.md)** - Comprehensive guide
+- 📖 **[Environment Variables](..env.template)** - All required env vars
+- 📖 **[Railway Guide](./DEPLOYMENT-GUIDE.md)** - Alternative (legacy)
+
+### Total Cost: **Rp 0/month** ✨
+
 ## License
 
 Private - Educational Use Only

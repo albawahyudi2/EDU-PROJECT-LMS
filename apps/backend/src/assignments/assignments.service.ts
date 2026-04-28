@@ -27,6 +27,11 @@ export class AssignmentsService {
   // ============================================
 
   async createAssignment(input: CreateAssignmentInput, teacherId: string) {
+    // Validate lessonId before proceeding
+    if (!input.lessonId || input.lessonId.trim() === '') {
+      throw new BadRequestException('Lesson ID tidak boleh kosong');
+    }
+    
     await this.verifyTeacherOwnsLesson(input.lessonId, teacherId);
 
     const assignment = await this.prisma.assignment.create({
@@ -1082,7 +1087,10 @@ export class AssignmentsService {
       },
     });
     if (!lesson) {
-      throw new NotFoundException('Materi tidak ditemukan');
+      // Improved error message with lessonId for debugging
+      throw new NotFoundException(
+        `Materi dengan ID "${lessonId}" tidak ditemukan. Pastikan materi sudah dibuat sebelum membuat tugas.`
+      );
     }
 
     const isTeacher = await this.prisma.classroomTeacher.findUnique({

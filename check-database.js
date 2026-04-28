@@ -16,13 +16,17 @@ async function checkDatabase() {
     const students = await prisma.student.findMany({
       include: {
         user: {
-          select: { email: true }
+          select: { 
+            email: true,
+            studentName: true,
+            parentName: true
+          }
         }
       }
     });
     console.log(`📚 Found ${students.length} students:`);
     students.forEach(s => {
-      console.log(`   - ${s.name} (${s.user.email}) [ID: ${s.id}]`);
+      console.log(`   - ${s.user.studentName || 'No Name'} (${s.user.email}) [ID: ${s.id}]`);
     });
 
     // Check assignments

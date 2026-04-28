@@ -68,27 +68,32 @@ async function testAuthentication() {
   try {
     // Test 1: Login with valid credentials
     const loginQuery = `
-      mutation Login($email: String!, $password: String!) {
-        login(loginInput: { email: $email, password: $password }) {
+      mutation Login($input: LoginInput!) {
+        login(input: $input) {
           accessToken
           user {
             id
             email
-            name
             role
+            teacherName
+            studentName
+            parentName
           }
         }
       }
     `;
 
     const loginResult = await graphqlRequest(loginQuery, {
-      email: 'admin@lms.com',
-      password: 'admin123'
+      input: {
+        email: 'guru@lms-abk.com',
+        password: 'Guru123!'
+      }
     });
 
     if (loginResult.login && loginResult.login.accessToken) {
       accessToken = loginResult.login.accessToken;
-      logTest('Login with valid credentials', 'PASS', `Token received, User: ${loginResult.login.user.name}`);
+      const userName = loginResult.login.user.teacherName || loginResult.login.user.studentName || loginResult.login.user.email;
+      logTest('Login with valid credentials', 'PASS', `Token received, User: ${userName}`);
     } else {
       logTest('Login with valid credentials', 'FAIL', 'No token received');
     }
@@ -96,8 +101,10 @@ async function testAuthentication() {
     // Test 2: Login with invalid credentials
     try {
       await graphqlRequest(loginQuery, {
-        email: 'admin@lms.com',
-        password: 'wrongpassword'
+        input: {
+          email: 'guru@lms-abk.com',
+          password: 'wrongpassword'
+        }
       });
       logTest('Login with invalid password', 'FAIL', 'Should have thrown error');
     } catch (error) {
@@ -110,15 +117,18 @@ async function testAuthentication() {
         me {
           id
           email
-          name
           role
+          teacherName
+          studentName
+          parentName
         }
       }
     `;
 
     const meResult = await graphqlRequest(meQuery, {}, accessToken);
     if (meResult.me && meResult.me.email) {
-      logTest('Get current user (me)', 'PASS', `Logged in as: ${meResult.me.name}`);
+      const userName = meResult.me.teacherName || meResult.me.studentName || meResult.me.email;
+      logTest('Get current user (me)', 'PASS', `Logged in as: ${userName}`);
     } else {
       logTest('Get current user (me)', 'FAIL', 'No user data');
     }
@@ -139,10 +149,9 @@ async function testSubjects() {
     // Create Subject
     const createSubjectMutation = `
       mutation CreateSubject($input: CreateSubjectInput!) {
-        createSubject(createSubjectInput: $input) {
+        createSubject(input: $input) {
           id
           name
-          code
           description
         }
       }
@@ -206,8 +215,8 @@ async function testSubjects() {
 
     // Update Subject
     const updateSubjectMutation = `
-      mutation UpdateSubject($id: Int!, $input: UpdateSubjectInput!) {
-        updateSubject(id: $id, updateSubjectInput: $input) {
+      mutation UpdateSubject($input: UpdateSubjectInput!) {
+        updateSubject(input: $input) {
           id
           name
           description
@@ -216,8 +225,8 @@ async function testSubjects() {
     `;
 
     const updateResult = await graphqlRequest(updateSubjectMutation, {
-      id: parseInt(testData.subjectId),
       input: {
+        subjectId: testData.subjectId,
         description: 'Updated description by test script'
       }
     }, accessToken);
@@ -251,11 +260,10 @@ async function testModules() {
     // Create Module
     const createModuleMutation = `
       mutation CreateModule($input: CreateModuleInput!) {
-        createModule(createModuleInput: $input) {
+        createModule(input: $input) {
           id
           title
           order
-          subjectId
         }
       }
     `;
@@ -319,8 +327,8 @@ async function testModules() {
 
     // Update Module
     const updateModuleMutation = `
-      mutation UpdateModule($id: Int!, $input: UpdateModuleInput!) {
-        updateModule(id: $id, updateModuleInput: $input) {
+      mutation UpdateModule($input: UpdateModuleInput!) {
+        updateModule(input: $input) {
           id
           title
           order
@@ -329,8 +337,8 @@ async function testModules() {
     `;
 
     const updateResult = await graphqlRequest(updateModuleMutation, {
-      id: parseInt(testData.moduleId),
       input: {
+        moduleId: testData.moduleId,
         order: 2
       }
     }, accessToken);
@@ -362,7 +370,7 @@ async function testLessons() {
     // Create Lesson
     const createLessonMutation = `
       mutation CreateLesson($input: CreateLessonInput!) {
-        createLesson(createLessonInput: $input) {
+        createLesson(input: $input) {
           id
           title
           content
@@ -434,8 +442,8 @@ async function testLessons() {
 
     // Update Lesson
     const updateLessonMutation = `
-      mutation UpdateLesson($id: Int!, $input: UpdateLessonInput!) {
-        updateLesson(id: $id, updateLessonInput: $input) {
+      mutation UpdateLesson($input: UpdateLessonInput!) {
+        updateLesson(input: $input) {
           id
           content
         }
@@ -443,8 +451,8 @@ async function testLessons() {
     `;
 
     const updateResult = await graphqlRequest(updateLessonMutation, {
-      id: parseInt(testData.lessonId),
       input: {
+        lessonId: testData.lessonId,
         content: 'Updated content by automated test'
       }
     }, accessToken);
@@ -476,7 +484,7 @@ async function testAssignments() {
     // Create Assignment
     const createAssignmentMutation = `
       mutation CreateAssignment($input: CreateAssignmentInput!) {
-        createAssignment(createAssignmentInput: $input) {
+        createAssignment(input: $input) {
           id
           title
           description
@@ -529,8 +537,8 @@ async function testAssignments() {
 
     // Update Assignment
     const updateAssignmentMutation = `
-      mutation UpdateAssignment($id: Int!, $input: UpdateAssignmentInput!) {
-        updateAssignment(id: $id, updateAssignmentInput: $input) {
+      mutation UpdateAssignment($input: UpdateAssignmentInput!) {
+        updateAssignment(input: $input) {
           id
           description
         }
@@ -538,8 +546,8 @@ async function testAssignments() {
     `;
 
     const updateResult = await graphqlRequest(updateAssignmentMutation, {
-      id: parseInt(testData.assignmentId),
       input: {
+        assignmentId: testData.assignmentId,
         description: 'Updated by automated test script'
       }
     }, accessToken);
