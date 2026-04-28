@@ -48,15 +48,15 @@ export default function SubmissionDetailPage() {
   const [gradeScore, setGradeScore] = useState('');
   const [gradeFeedback, setGradeFeedback] = useState('');
 
-  const { data, isLoading, error, refetch } = useQuery({
+  const { data, isLoading, error, refetch } = useQuery<{ submissionDetail: any }, Error>({
     queryKey: ['submissionDetail', submissionId],
     queryFn: () =>
       graphqlRequest(ASSIGNMENT_QUERIES.SUBMISSION_DETAIL, { submissionId }, { token: accessToken }),
     enabled: !!accessToken && !!submissionId,
     // Auto-refresh every 30 seconds if not yet graded (teacher waiting for submission)
-    refetchInterval: (data) => {
-      const submission = data?.submissionDetail;
-      return submission?.status !== 'GRADED' ? 30000 : false;
+    refetchInterval: (query) => {
+      const currentSubmission = query.state.data?.submissionDetail;
+      return currentSubmission?.status !== 'GRADED' ? 30000 : false;
     },
   });
 

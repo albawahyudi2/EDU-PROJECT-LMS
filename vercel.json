@@ -1,15 +1,8 @@
 {
-  "buildCommand": "cd apps/frontend && pnpm build",
-  "devCommand": "cd apps/frontend && pnpm dev",
-  "installCommand": "pnpm install",
+  "buildCommand": "pnpm --filter @lms/frontend build",
+  "devCommand": "pnpm --filter @lms/frontend dev",
+  "installCommand": "pnpm install --frozen-lockfile",
   "framework": "nextjs",
-  "outputDirectory": "apps/frontend/.next",
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "/api/:path*"
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
