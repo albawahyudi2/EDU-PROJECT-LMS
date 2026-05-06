@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { S3Client, PutObjectCommand, DeleteObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
-import { NodeHttpHandler } from '@smithy/node-http-handler';
-import { Agent } from 'https';
 
 @Injectable()
 export class R2Service {
@@ -23,12 +21,6 @@ export class R2Service {
       return;
     }
 
-    // Create custom HTTPS agent to bypass SSL verification (development only)
-    const httpsAgent = new Agent({
-      rejectUnauthorized: false,
-      keepAlive: true,
-    });
-
     this.s3Client = new S3Client({
       region: 'auto',
       endpoint: `https://${accountId}.r2.cloudflarestorage.com`,
@@ -36,9 +28,6 @@ export class R2Service {
         accessKeyId,
         secretAccessKey,
       },
-      requestHandler: new NodeHttpHandler({
-        httpsAgent,
-      }),
     });
   }
 
