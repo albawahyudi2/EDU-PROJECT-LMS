@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, ObjectType, Field } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
 import { GraphQLUpload } from 'graphql-upload-ts';
 import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
@@ -42,6 +42,19 @@ async function fileUploadToMulterFile(upload: FileUpload): Promise<Express.Multe
   };
 }
 
+// Response type for pre-signed URL
+@ObjectType()
+class PresignedUploadUrl {
+  @Field()
+  uploadUrl: string;
+
+  @Field()
+  publicUrl: string;
+
+  @Field()
+  key: string;
+}
+
 @Resolver(() => MediaModel)
 export class MediaResolver {
   constructor(private mediaService: MediaService) {}
@@ -56,6 +69,39 @@ export class MediaResolver {
   ) {
     const multerFile = await fileUploadToMulterFile(file);
     return this.mediaService.uploadMedia(multerFile, type, user.id, folder);
+  }
+
+  /**
+   * Generate pre-signed URL for direct browser-to-R2 upload
+   * Use this instead of uploadMedia when server-side upload fails
+   */
+  @Mutation(() => PresignedUploadUrl)
+  @UseGuards(GqlAuthGuard)
+  async getUploadPresignedUrl(
+    @Args('filename') filename: string,
+    @Args('contentType') contentType: string,
+    @Args('type', { type: () => MediaType }) type: MediaType,
+    @Args('folder', { nullable: true, defaultValue: 'uploads' }) folder: string,
+    @CurrentUser() user: any,
+  ) {
+    return this.mediaService.getUploadPresignedUrl(filename, contentType, type, user.id, folder);
+  }
+
+  /**
+   * After browser uploads directly to R2, call this to save to database
+   */
+  @Mutation(() => MediaModel)
+  @UseGuards(GqlAuthGuard)
+  async confirmMediaUpload(
+    @Args('key') key: string,
+    @Args('originalName') originalName: string,
+    @Args('mimeType') mimeType: string,
+    @Args('size', { type: () => Int }) size: number,
+    @Args('type', { type: () => MediaType }) type: MediaType,
+    @Args('publicUrl') publicUrl: string,
+    @CurrentUser() user: any,
+  ) {
+    return this.mediaService.confirmUpload(key, originalName, mimeType, size, type, publicUrl, user.id);
   }
 
   @Query(() => [MediaModel])

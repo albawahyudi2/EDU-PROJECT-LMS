@@ -37,7 +37,39 @@ export class R2Service {
   }
 
   /**
-   * Upload file to R2
+   * Generate a pre-signed URL for direct browser-to-R2 upload.
+   * Avoids Railway → R2 TLS issues by letting the browser upload directly.
+   * Pre-signing only does local crypto — no actual network call to R2.
+   */
+  async generateUploadPresignedUrl(
+    folder: string = 'uploads',
+    filename: string,
+    contentType: string,
+    expiresIn: number = 300,
+  ): Promise<{ uploadUrl: string; publicUrl: string; key: string }> {
+    if (!this.s3Client) {
+      throw new Error('R2 client not initialized. Check your environment variables.');
+    }
+
+    const timestamp = Date.now();
+    const randomStr = Math.random().toString(36).substring(2, 8);
+    const extension = filename.split('.').pop();
+    const key = `${folder}/${timestamp}-${randomStr}.${extension}`;
+
+    const command = new PutObjectCommand({
+      Bucket: this.bucketName,
+      Key: key,
+      ContentType: contentType,
+    });
+
+    const uploadUrl = await getSignedUrl(this.s3Client, command, { expiresIn });
+    const publicFileUrl = this.publicUrl ? `${this.publicUrl}/${key}` : key;
+
+    return { uploadUrl, publicUrl: publicFileUrl, key };
+  }
+
+  /**
+   * Upload file to R2 (server-side, may have SSL issues on some hosts)
    */
   async uploadFile(
     file: Express.Multer.File,
@@ -47,7 +79,6 @@ export class R2Service {
       throw new Error('R2 client not initialized. Check your environment variables.');
     }
 
-    // Generate unique filename
     const timestamp = Date.now();
     const randomStr = Math.random().toString(36).substring(2, 8);
     const extension = file.originalname.split('.').pop();
@@ -62,9 +93,7 @@ export class R2Service {
 
     await this.s3Client.send(command);
 
-    // Return public URL
     const url = this.publicUrl ? `${this.publicUrl}/${key}` : key;
-
     return { url, key };
   }
 

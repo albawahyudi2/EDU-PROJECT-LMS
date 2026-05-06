@@ -68,6 +68,54 @@ export class MediaService {
   }
 
   /**
+   * Generate pre-signed URL for direct browser-to-R2 upload
+   */
+  async getUploadPresignedUrl(
+    filename: string,
+    contentType: string,
+    type: MediaType,
+    userId: string,
+    folder: string = 'uploads',
+  ) {
+    const { uploadUrl, publicUrl, key } = await this.r2Service.generateUploadPresignedUrl(
+      folder,
+      filename,
+      contentType,
+    );
+
+    return { uploadUrl, publicUrl, key };
+  }
+
+  /**
+   * Confirm upload after browser uploaded directly to R2
+   * Creates the database record
+   */
+  async confirmUpload(
+    key: string,
+    originalName: string,
+    mimeType: string,
+    size: number,
+    type: MediaType,
+    publicUrl: string,
+    userId: string,
+  ) {
+    const media = await this.prisma.media.create({
+      data: {
+        filename: key,
+        originalName,
+        mimeType,
+        size,
+        type,
+        url: publicUrl,
+        uploadedById: userId,
+      },
+    });
+
+    return media;
+  }
+
+
+  /**
    * Get media by ID
    */
   async getMediaById(id: string) {

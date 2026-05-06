@@ -91,81 +91,98 @@ export function FileUpload({
     setError(null);
 
     try {
-      // Check if user is authenticated
       if (!accessToken) {
         throw new Error('Silakan login terlebih dahulu');
       }
 
-      // Create FormData with GraphQL multipart request
-      const formData = new FormData();
-      
-      // GraphQL operation
-      const operations = JSON.stringify({
-        query: `
-          mutation UploadMedia($file: Upload!, $type: MediaType!, $folder: String) {
-            uploadMedia(file: $file, type: $type, folder: $folder) {
-              id
-              url
-              originalName
-              size
-            }
-          }
-        `,
-        variables: {
-          file: null,
-          type: mediaType,
-          folder,
-        },
-      });
-
-      // Map for file upload
-      const map = JSON.stringify({
-        '0': ['variables.file'],
-      });
-
-      formData.append('operations', operations);
-      formData.append('map', map);
-      formData.append('0', file);
-
       const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
       const GRAPHQL_URL = API_URL.endsWith('/graphql') ? API_URL : `${API_URL}/graphql`;
 
-      const response = await fetch(GRAPHQL_URL, {
+      // Step 1: Get pre-signed URL from backend (no actual R2 connection on server)
+      const presignRes = await fetch(GRAPHQL_URL, {
         method: 'POST',
         headers: {
+          'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`,
-          'apollo-require-preflight': 'true',
         },
-        body: formData,
+        body: JSON.stringify({
+          query: `
+            mutation GetUploadPresignedUrl($filename: String!, $contentType: String!, $type: MediaType!, $folder: String) {
+              getUploadPresignedUrl(filename: $filename, contentType: $contentType, type: $type, folder: $folder) {
+                uploadUrl
+                publicUrl
+                key
+              }
+            }
+          `,
+          variables: {
+            filename: file.name,
+            contentType: file.type,
+            type: mediaType,
+            folder,
+          },
+        }),
       });
 
-      const result = await response.json();
+      const presignData = await presignRes.json();
+      if (presignData.errors) throw new Error(presignData.errors[0].message);
 
-      if (result.errors) {
-        const errorMsg = result.errors[0].message;
-        if (errorMsg.includes('not configured') || errorMsg.includes('R2')) {
-          throw new Error('Storage belum dikonfigurasi. Hubungi administrator.');
-        }
-        throw new Error(errorMsg);
+      const { uploadUrl, publicUrl, key } = presignData.data.getUploadPresignedUrl;
+
+      // Step 2: Upload directly from browser to R2 (no Railway involved)
+      const uploadRes = await fetch(uploadUrl, {
+        method: 'PUT',
+        headers: { 'Content-Type': file.type },
+        body: file,
+      });
+
+      if (!uploadRes.ok) {
+        throw new Error(`Upload ke R2 gagal: ${uploadRes.status}`);
       }
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      // Step 3: Confirm upload to backend (save to database)
+      const confirmRes = await fetch(GRAPHQL_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({
+          query: `
+            mutation ConfirmMediaUpload($key: String!, $originalName: String!, $mimeType: String!, $size: Int!, $type: MediaType!, $publicUrl: String!) {
+              confirmMediaUpload(key: $key, originalName: $originalName, mimeType: $mimeType, size: $size, type: $type, publicUrl: $publicUrl) {
+                id
+                url
+                originalName
+                size
+              }
+            }
+          `,
+          variables: {
+            key,
+            originalName: file.name,
+            mimeType: file.type,
+            size: file.size,
+            type: mediaType,
+            publicUrl,
+          },
+        }),
+      });
 
-      const uploadedMedia = result.data.uploadMedia;
+      const confirmData = await confirmRes.json();
+      if (confirmData.errors) throw new Error(confirmData.errors[0].message);
+
+      const uploadedMedia = confirmData.data.confirmMediaUpload;
       setIsSuccess(true);
       onUploadComplete(uploadedMedia.id, uploadedMedia.url);
 
-      // Reset after 2 seconds
       setTimeout(() => {
         setFile(null);
         setPreview(null);
         setIsSuccess(false);
-        if (inputRef.current) {
-          inputRef.current.value = '';
-        }
+        if (inputRef.current) inputRef.current.value = '';
       }, 2000);
+
     } catch (err) {
       console.error('Upload error:', err);
       setError(err instanceof Error ? err.message : 'Upload gagal');
