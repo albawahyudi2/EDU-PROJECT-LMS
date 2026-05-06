@@ -127,7 +127,10 @@ export function FileUpload({
       formData.append('map', map);
       formData.append('0', file);
 
-      const response = await fetch('http://localhost:3001/graphql', {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const GRAPHQL_URL = API_URL.endsWith('/graphql') ? API_URL : `${API_URL}/graphql`;
+
+      const response = await fetch(GRAPHQL_URL, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${accessToken}`,
