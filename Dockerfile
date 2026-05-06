@@ -37,8 +37,8 @@ RUN pnpm --filter @lms/backend exec nest build
 # ============================================
 FROM node:18-alpine AS runner
 
-# Install OpenSSL (required by Prisma on Alpine)
-RUN apk add --no-cache openssl
+# Install OpenSSL and CA certificates (required for Prisma + SSL connections to R2)
+RUN apk add --no-cache openssl ca-certificates
 
 WORKDIR /app
 
