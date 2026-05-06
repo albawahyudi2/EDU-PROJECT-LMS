@@ -95,84 +95,27 @@ export function FileUpload({
         throw new Error('Silakan login terlebih dahulu');
       }
 
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-      const GRAPHQL_URL = API_URL.endsWith('/graphql') ? API_URL : `${API_URL}/graphql`;
+      // Upload via Vercel API route (avoids Railway→R2 SSL issue)
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('type', mediaType);
+      formData.append('folder', folder);
 
-      // Step 1: Get pre-signed URL from backend (no actual R2 connection on server)
-      const presignRes = await fetch(GRAPHQL_URL, {
+      const response = await fetch('/api/upload', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`,
         },
-        body: JSON.stringify({
-          query: `
-            mutation GetUploadPresignedUrl($filename: String!, $contentType: String!, $type: MediaType!, $folder: String) {
-              getUploadPresignedUrl(filename: $filename, contentType: $contentType, type: $type, folder: $folder) {
-                uploadUrl
-                publicUrl
-                key
-              }
-            }
-          `,
-          variables: {
-            filename: file.name,
-            contentType: file.type,
-            type: mediaType,
-            folder,
-          },
-        }),
+        body: formData,
       });
 
-      const presignData = await presignRes.json();
-      if (presignData.errors) throw new Error(presignData.errors[0].message);
+      const result = await response.json();
 
-      const { uploadUrl, publicUrl, key } = presignData.data.getUploadPresignedUrl;
-
-      // Step 2: Upload directly from browser to R2 (no Railway involved)
-      const uploadRes = await fetch(uploadUrl, {
-        method: 'PUT',
-        headers: { 'Content-Type': file.type },
-        body: file,
-      });
-
-      if (!uploadRes.ok) {
-        throw new Error(`Upload ke R2 gagal: ${uploadRes.status}`);
+      if (!response.ok || result.error) {
+        throw new Error(result.error || 'Upload gagal');
       }
 
-      // Step 3: Confirm upload to backend (save to database)
-      const confirmRes = await fetch(GRAPHQL_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`,
-        },
-        body: JSON.stringify({
-          query: `
-            mutation ConfirmMediaUpload($key: String!, $originalName: String!, $mimeType: String!, $size: Int!, $type: MediaType!, $publicUrl: String!) {
-              confirmMediaUpload(key: $key, originalName: $originalName, mimeType: $mimeType, size: $size, type: $type, publicUrl: $publicUrl) {
-                id
-                url
-                originalName
-                size
-              }
-            }
-          `,
-          variables: {
-            key,
-            originalName: file.name,
-            mimeType: file.type,
-            size: file.size,
-            type: mediaType,
-            publicUrl,
-          },
-        }),
-      });
-
-      const confirmData = await confirmRes.json();
-      if (confirmData.errors) throw new Error(confirmData.errors[0].message);
-
-      const uploadedMedia = confirmData.data.confirmMediaUpload;
+      const uploadedMedia = result.media;
       setIsSuccess(true);
       onUploadComplete(uploadedMedia.id, uploadedMedia.url);
 
