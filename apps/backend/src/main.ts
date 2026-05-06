@@ -49,7 +49,7 @@ async function bootstrap() {
       callback(null, false);
     },
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    allowedHeaders: 'Content-Type, Authorization, Accept',
+    allowedHeaders: 'Content-Type, Authorization, Accept, apollo-require-preflight, x-apollo-operation-name',
     credentials: true,
   });
   
