@@ -54,9 +54,9 @@ export default function LoginPage() {
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
             <BookOpen className="w-8 h-8 text-primary" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900">LMS ABK</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Sinergi Orang Tua dan Guru</h1>
           <p className="text-muted-foreground mt-2">
-            Learning Management System untuk Anak Berkebutuhan Khusus
+            Platform Media Belajar Sinergi Orang Tua dan Guru
           </p>
         </div>
 

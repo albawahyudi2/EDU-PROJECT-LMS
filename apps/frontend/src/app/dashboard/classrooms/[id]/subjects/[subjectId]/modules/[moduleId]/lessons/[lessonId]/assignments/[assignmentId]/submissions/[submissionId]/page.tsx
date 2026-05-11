@@ -307,20 +307,31 @@ export default function SubmissionDetailPage() {
                       )}
                       
                       {isSubmitted && (
-                        <div className="flex items-center gap-3 mt-2">
-                          {stepSub.photoUrl && (
+                        <div className="flex flex-col gap-3 mt-2">
+                          {/* If photoUrls array exists and has length, show all photos */}
+                          {stepSub.photoUrls && stepSub.photoUrls.length > 0 ? (
+                            <div className="flex flex-wrap gap-2">
+                              {stepSub.photoUrls.map((url: string, i: number) => (
+                                <a key={i} href={url} target="_blank" className="text-xs text-blue-600 hover:underline flex items-center gap-1">
+                                  <ImageIcon className="h-3 w-3" /> Foto bukti {i + 1}
+                                </a>
+                              ))}
+                            </div>
+                          ) : stepSub.photoUrl ? (
+                            /* Fallback to legacy photoUrl */
                             <a href={stepSub.photoUrl} target="_blank" className="text-xs text-blue-600 hover:underline flex items-center gap-1">
                               <ImageIcon className="h-3 w-3" /> Foto bukti
                             </a>
-                          )}
+                          ) : null}
+                          
                           {stepSub.videoUrl && (
                             <a href={stepSub.videoUrl} target="_blank" className="text-xs text-blue-600 hover:underline flex items-center gap-1">
-                              <Video className="h-3 w-3" /> Video
+                              <Video className="h-3 w-3" /> Video Bukti
                             </a>
                           )}
                           {stepSub.submittedAt && (
-                            <span className="text-xs text-muted-foreground">
-                              ✓ {new Date(stepSub.submittedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}
+                            <span className="text-xs text-muted-foreground mt-1 block">
+                              ✓ Disubmit: {new Date(stepSub.submittedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}
                             </span>
                           )}
                         </div>

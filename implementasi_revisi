@@ -1,0 +1,155 @@
+# Revisi LMS – "Sinergi Orang Tua dan Guru"
+
+## Ringkasan
+
+Berdasarkan analisis kodebase (Next.js 14 + NestJS + Prisma + Cloudflare R2), terdapat empat perubahan yang diminta:
+
+1. **Ganti nama website** → "Sinergi Orang Tua dan Guru"
+2. **Upload materi pelajaran** (PDF, Word, PPT, dll) oleh guru
+3. **Upload bukti task analysis** oleh siswa/orang tua
+4. **Perbaikan tampilan bukti pengerjaan di sisi guru**
+
+---
+
+## Stack & Library yang Relevan
+
+| Komponen | Teknologi |
+|---|---|
+| Frontend | Next.js 14, React Query, TailwindCSS, Radix UI, lucide-react |
+| Backend | NestJS, GraphQL (Apollo), Multer, graphql-upload-ts |
+| Storage | Cloudflare R2 (via presigned URL) |
+| DB | PostgreSQL + Prisma ORM |
+| Upload API | `/api/upload` route di Next.js (Vercel serverless) |
+
+> [!IMPORTANT]
+> Backend sudah punya `R2Service` dan `MediaService`. Frontend upload langsung ke R2 via presigned URL. **Tidak perlu library baru** — semua fitur bisa dibangun di atas infrastruktur yang ada.
+
+---
+
+## Open Questions
+
+> [!IMPORTANT]
+> **Pertanyaan sebelum eksekusi:**
+> 
+> 1. **Nama website**: Apakah "Sinergi Orang Tua dan Guru" digunakan di semua tempat (tab browser, navbar, login page)? Atau hanya di bagian tertentu?
+> 2. **Upload materi**: Siapa yang bisa upload materi — hanya guru? Apakah orang tua/siswa bisa melihat/download materi tersebut?
+> 3. **Format file materi**: Selain PDF dan Word (.docx), apakah perlu mendukung PowerPoint (.pptx), Excel (.xlsx), atau format lain?
+> 4. **Ukuran maksimal file**: Saat ini PDF max 10MB, Video max 20MB. Apakah batas ini sudah sesuai untuk materi pelajaran Word/PPT?
+> 5. **Bukti task analysis**: Saat ini schema menyimpan 1 foto + 1 video per langkah. Apakah perlu **lebih dari 1 foto** per langkah?
+> 6. **"Bukti belum masuk di guru"**: Apakah masalahnya adalah (a) foto/video tidak tampil di halaman review guru, atau (b) submission status tidak ter-update setelah siswa submit?
+
+---
+
+## Perubahan yang Diusulkan
+
+---
+
+### 1. Ganti Nama Website
+
+#### [MODIFY] [layout.tsx](file:///c:/PROJECT/EDU_PROJECT_LMS/apps/frontend/src/app/layout.tsx)
+Ubah `metadata.title` dan `metadata.description` menjadi "Sinergi Orang Tua dan Guru".
+
+#### [MODIFY] [navbar.tsx](file:///c:/PROJECT/EDU_PROJECT_LMS/apps/frontend/src/components/layout/navbar.tsx)
+Ubah branding/logo text di navbar.
+
+---
+
+### 2. Upload Materi Pelajaran (PDF, Word, PPT, dll)
+
+#### Backend
+
+**Problem**: `MediaType` enum saat ini hanya punya: `VIDEO | PDF | IMAGE | AUDIO`. Word, PPT, Excel tidak ter-cover.
+
+**Solusi**: Tambahkan type `DOCUMENT` ke enum untuk file non-PDF (Word, PPT, Excel), dan extend `ALLOWED_MIME_TYPES`.
+
+#### [MODIFY] [media.service.ts](file:///c:/PROJECT/EDU_PROJECT_LMS/apps/backend/src/media/media.service.ts)
+- Tambah entry `DOCUMENT` ke `MAX_FILE_SIZE` (max 20MB)
+- Tambah MIME types untuk DOCUMENT: `application/msword`, `application/vnd.openxmlformats-officedocument.wordprocessingml.document`, `application/vnd.ms-powerpoint`, `application/vnd.openxmlformats-officedocument.presentationml.presentation`, `application/vnd.ms-excel`, `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`
+
+#### [MODIFY] [schema.prisma](file:///c:/PROJECT/EDU_PROJECT_LMS/packages/database/prisma/schema.prisma)
+- Tambah `DOCUMENT` ke enum `MediaType`
+
+> [!WARNING]
+> Perlu **Prisma migration** setelah mengubah enum. Ini akan mengubah skema database production.
+
+#### Frontend
+
+#### [NEW] `/dashboard/classrooms/[classroomId]/subjects/[subjectId]/modules/[moduleId]/lessons/[lessonId]/materials`
+Halaman baru untuk guru — upload dan manajemen materi pelajaran (berkas terlampir ke lesson).
+
+Fitur:
+- Drag & drop upload
+- Preview daftar file yang sudah diupload (nama, ukuran, tanggal)
+- Tombol download/hapus per file
+- Badge tipe file (PDF 🔴, Word 🔵, PPT 🟠, Excel 🟢, Video 🟣)
+
+#### [MODIFY] Halaman detail lesson (sudah ada di classrooms routing)
+- Tambah section "Materi Pelajaran" yang menampilkan semua file yang di-attach ke lesson
+- Tampil untuk guru (edit) dan siswa/orang tua (view/download only)
+
+---
+
+### 3. Upload Bukti Task Analysis
+
+**Problem saat ini**: Schema `StepSubmission` sudah punya `photoUrl` dan `videoUrl`, tapi **belum ada UI frontend** untuk siswa/orang tua meng-upload foto/video bukti per langkah.
+
+#### Frontend
+
+#### [MODIFY] Halaman submission task analysis untuk siswa
+Halaman `/dashboard/submissions/[id]` untuk tipe `TASK_ANALYSIS`:
+- Tampilkan setiap langkah (step) dari assignment
+- Setiap langkah punya tombol **"Upload Foto Bukti"** dan **"Upload Video Bukti"** (opsional)
+- Preview thumbnail foto yang sudah diupload
+- Status per langkah: ⏳ PENDING / ✅ APPROVED / ❌ REJECTED
+- Tombol "Kumpulkan Tugas" setelah semua langkah wajib diisi
+
+Alur upload:
+1. Siswa klik "Upload Foto"
+2. Frontend request presigned URL ke backend
+3. Upload langsung ke R2
+4. Confirm upload → simpan `photoUrl` via mutation `submitTaskStep`
+
+---
+
+### 4. Bukti Pengerjaan Belum Masuk di Guru
+
+**Problem**: Halaman detail submission di guru (`/dashboard/submissions/[id]`) kemungkinan **tidak menampilkan foto/video** yang sudah diupload siswa per langkah.
+
+#### [MODIFY] [submissions/[id]/page.tsx](file:///c:/PROJECT/EDU_PROJECT_LMS/apps/frontend/src/app/dashboard/submissions/%5Bid%5D)
+- Pastikan GraphQL query mengambil `stepSubmissions { photoUrl, videoUrl, status, comment }`
+- Tampilkan foto/video per langkah dalam card yang jelas
+- Tombol "Setujui" / "Tolak" per langkah (teacher review)
+- Tampilkan komentar guru per langkah
+
+#### [MODIFY] GraphQL query di graphql-client.ts
+- Update `SUBMISSION_DETAIL` query agar include `stepSubmissions` dengan `photoUrl` dan `videoUrl`
+
+---
+
+## Verification Plan
+
+### Setelah Implementasi
+
+1. **Nama website**: Cek tab browser dan navbar setelah login
+2. **Upload materi**:
+   - Login sebagai guru → masuk ke lesson → upload file Word/PDF/PPT
+   - Login sebagai siswa → lihat materi tersebut, bisa download
+3. **Upload bukti task analysis**:
+   - Login sebagai siswa → kerjakan task analysis → upload foto per langkah → kumpulkan
+4. **Guru melihat bukti**:
+   - Login sebagai guru → Penilaian Tertunda → klik submission → foto/video muncul per langkah
+
+### Prisma Migration
+```bash
+cd packages/database
+npx prisma migrate dev --name add_document_media_type
+```
+
+---
+
+## Urutan Eksekusi yang Direkomendasikan
+
+1. Ganti nama website (paling cepat, tidak ada risiko)
+2. Fix tampilan bukti di guru (bug fix, tidak ada perubahan schema)
+3. Upload bukti task analysis di frontend (UI baru, tidak ada schema change)
+4. Upload materi pelajaran (perlu schema migration + UI baru — paling kompleks)

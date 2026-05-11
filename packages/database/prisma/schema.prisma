@@ -221,6 +221,7 @@ enum MediaType {
   PDF
   IMAGE
   AUDIO
+  DOCUMENT
 }
 
 model Media {
@@ -479,7 +480,8 @@ model StepSubmission {
   stepId       String
   step         TaskStep             @relation(fields: [stepId], references: [id], onDelete: Cascade)
   
-  photoUrl     String               // Required: 1 photo per step
+  photoUrl     String?              // Kept for backward compat
+  photoUrls    String[]             @default([]) // Required: 1 or more photos per step
   videoUrl     String?              // Required: 1 video per step
   
   status       StepSubmissionStatus @default(PENDING)

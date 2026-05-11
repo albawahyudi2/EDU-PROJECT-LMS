@@ -279,10 +279,16 @@ export class SubmitTaskStepInput {
   @IsString()
   stepId: string;
 
-  @Field()
-  @IsNotEmpty()
+  @Field({ nullable: true })
+  @IsOptional()
   @IsString()
-  photoUrl: string;
+  photoUrl?: string;
+
+  @Field(() => [String], { nullable: true })
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  photoUrls?: string[];
 
   @Field({ nullable: true })
   @IsOptional()

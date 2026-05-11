@@ -7,8 +7,8 @@ import { Toaster } from '@/components/ui/toaster';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'LMS untuk Anak Berkebutuhan Khusus',
-  description: 'Learning Management System yang dirancang khusus untuk anak dengan hambatan intelektual',
+  title: 'Sinergi Orang Tua dan Guru',
+  description: 'Learning Management System Sinergi Orang Tua dan Guru',
 };
 
 export default function RootLayout({

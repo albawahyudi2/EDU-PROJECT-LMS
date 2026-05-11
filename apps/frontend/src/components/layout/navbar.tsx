@@ -44,7 +44,7 @@ export function Navbar({ mobileMenuOpen = false, setMobileMenuOpen }: NavbarProp
           </button>
           <div className="flex items-center gap-2">
             <BookOpen className="h-6 w-6 text-primary" />
-            <span className="font-bold text-lg hidden sm:block">LMS ABK</span>
+            <span className="font-bold text-lg hidden sm:block">Sinergi Orang Tua dan Guru</span>
           </div>
         </div>
 

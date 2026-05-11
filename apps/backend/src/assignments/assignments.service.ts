@@ -661,12 +661,14 @@ export class AssignmentsService {
       create: {
         submissionId: input.submissionId,
         stepId: input.stepId,
-        photoUrl: input.photoUrl,
+        photoUrl: input.photoUrls?.[0] || input.photoUrl,
+        photoUrls: input.photoUrls || (input.photoUrl ? [input.photoUrl] : []),
         videoUrl: input.videoUrl,
         status: 'PENDING',
       },
       update: {
-        photoUrl: input.photoUrl,
+        photoUrl: input.photoUrls?.[0] || input.photoUrl,
+        photoUrls: input.photoUrls || (input.photoUrl ? [input.photoUrl] : []),
         videoUrl: input.videoUrl,
         status: 'PENDING',
         submittedAt: new Date(),

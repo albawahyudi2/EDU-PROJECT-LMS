@@ -5,6 +5,7 @@ export enum MediaType {
   PDF = 'PDF',
   IMAGE = 'IMAGE',
   AUDIO = 'AUDIO',
+  DOCUMENT = 'DOCUMENT',
 }
 
 registerEnumType(MediaType, {

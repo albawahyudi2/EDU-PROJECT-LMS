@@ -342,8 +342,11 @@ export class StepSubmissionModel {
   @Field()
   stepId: string;
 
-  @Field()
-  photoUrl: string;
+  @Field({ nullable: true })
+  photoUrl?: string;
+
+  @Field(() => [String], { nullable: true })
+  photoUrls?: string[];
 
   @Field({ nullable: true })
   videoUrl?: string;

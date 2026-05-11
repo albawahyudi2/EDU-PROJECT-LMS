@@ -8,6 +8,7 @@ const MAX_FILE_SIZE = {
   VIDEO: 20 * 1024 * 1024, // 20MB
   PDF: 10 * 1024 * 1024, // 10MB
   AUDIO: 10 * 1024 * 1024, // 10MB
+  DOCUMENT: 20 * 1024 * 1024, // 20MB
 };
 
 const ALLOWED_MIME_TYPES = {
@@ -15,6 +16,12 @@ const ALLOWED_MIME_TYPES = {
   VIDEO: ['video/mp4', 'video/webm', 'video/quicktime'],
   PDF: ['application/pdf'],
   AUDIO: ['audio/mpeg', 'audio/mp3', 'audio/wav', 'audio/ogg'],
+  DOCUMENT: [
+    'application/msword', // .doc
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx
+    'application/vnd.ms-powerpoint', // .ppt
+    'application/vnd.openxmlformats-officedocument.presentationml.presentation', // .pptx
+  ],
 };
 
 @Injectable()

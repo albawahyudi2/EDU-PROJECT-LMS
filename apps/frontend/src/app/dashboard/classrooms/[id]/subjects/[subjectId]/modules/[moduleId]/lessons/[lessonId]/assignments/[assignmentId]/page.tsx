@@ -684,7 +684,7 @@ function TaskSubmitter({
 }) {
   const queryClient = useQueryClient();
   const [submissionId, setSubmissionId] = useState<string | null>(null);
-  const [stepPhotos, setStepPhotos] = useState<Record<string, string>>({});
+  const [stepPhotos, setStepPhotos] = useState<Record<string, string[]>>({});
   const [stepVideos, setStepVideos] = useState<Record<string, string>>({});
   const [submittedSteps, setSubmittedSteps] = useState<Set<string>>(new Set());
   const [isCompleted, setIsCompleted] = useState(false);
@@ -791,19 +791,31 @@ function TaskSubmitter({
                 {!submittedSteps.has(step.id) && (
                   <div className="space-y-3">
                     <div className="space-y-1.5">
-                      <Label className="text-xs font-medium">Foto Bukti *</Label>
+                      <Label className="text-xs font-medium">Foto Bukti (bisa lebih dari satu) *</Label>
                       <FileUpload
                         mediaType="IMAGE"
                         folder="submissions/photos"
                         onUploadComplete={(mediaId, url) => {
-                          setStepPhotos({ ...stepPhotos, [step.id]: url });
+                          setStepPhotos((prev) => ({
+                            ...prev,
+                            [step.id]: [...(prev[step.id] || []), url]
+                          }));
                         }}
                         maxSize={5}
                       />
-                      {stepPhotos[step.id] && (
-                        <div className="text-xs text-green-600 flex items-center gap-1">
-                          <CheckCircle2 className="h-3 w-3" />
-                          Foto berhasil diupload
+                      {stepPhotos[step.id] && stepPhotos[step.id].length > 0 && (
+                        <div className="flex flex-col gap-1 mt-2">
+                          <div className="text-xs text-green-600 flex items-center gap-1 mb-1">
+                            <CheckCircle2 className="h-3 w-3" />
+                            {stepPhotos[step.id].length} foto berhasil diupload
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            {stepPhotos[step.id].map((url, i) => (
+                              <a key={i} href={url} target="_blank" className="text-xs text-blue-600 hover:underline flex items-center gap-1">
+                                <ImageIcon className="h-3 w-3" /> Foto {i + 1}
+                              </a>
+                            ))}
+                          </div>
                         </div>
                       )}
                     </div>
@@ -831,11 +843,11 @@ function TaskSubmitter({
                         submitStepMutation.mutate({
                           submissionId,
                           stepId: step.id,
-                          photoUrl: stepPhotos[step.id]?.trim(),
+                          photoUrls: stepPhotos[step.id] || [],
                           videoUrl: stepVideos[step.id]?.trim() || undefined,
                         })
                       }
-                      disabled={submitStepMutation.isPending || !stepPhotos[step.id]?.trim()}
+                      disabled={submitStepMutation.isPending || !(stepPhotos[step.id] && stepPhotos[step.id].length > 0)}
                     >
                       {submitStepMutation.isPending && <Loader2 className="h-3 w-3 animate-spin mr-1" />}
                       Submit Langkah
