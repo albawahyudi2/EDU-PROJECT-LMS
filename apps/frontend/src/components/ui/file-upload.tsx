@@ -29,7 +29,7 @@ const DEFAULT_MAX_SIZES: Record<MediaType, number> = {
 
 const DEFAULT_ACCEPT: Record<MediaType, string> = {
   IMAGE: 'image/jpeg,image/jpg,image/png,image/gif,image/webp',
-  VIDEO: 'video/mp4,video/webm,video/quicktime,video/x-msvideo,video/x-matroska,video/3gpp,video/x-flv,video/x-ms-wmv,video/avi,.mp4,.mov,.avi,.mkv,.webm,.3gp,.flv,.wmv',
+  VIDEO: 'video/*',
   PDF: 'application/pdf',
   AUDIO: 'audio/mpeg,audio/mp3,audio/wav,audio/ogg',
   DOCUMENT: 'application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/pdf',
