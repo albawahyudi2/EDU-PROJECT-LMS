@@ -12,9 +12,9 @@ async function main() {
     update: {},
     create: {
       email: 'guru@lms-abk.com',
-      passwordHash: await bcrypt.hash('Guru123!', 10),
+      passwordHash: await bcrypt.hash('Ernawati_guru', 10),
       role: 'TEACHER',
-      teacherName: 'Bu Ani Susanti',
+      teacherName: 'Ernawati',
       isActive: true,
       isVerified: true,
     },
@@ -47,26 +47,30 @@ async function main() {
 
   // Create 4 Student-Parent Accounts
   const studentNames = [
-    'Andi Pratama',
-    'Budi Santoso',
-    'Citra Dewi',
-    'Deni Kurniawan',
+    'Zaid Nashrulloh Rosyadi',
+    'Aqhilla Reysya Aprilia',
+    'Queena Artha Rahmaputeri',
   ];
 
   const parentNames = [
-    'Ibu Susi',
-    'Bapak Ahmad',
-    'Ibu Rina',
-    'Ibu Dewi',
+    'Orang Tua Zaid',
+    'Orang Tua Aqhilla',
+    'Orang Tua Queena',
   ];
 
-  for (let i = 0; i < 4; i++) {
+  const passwords = [
+    'Zaid_23',
+    'Aqhilla_45',
+    'Queena_89',
+  ];
+
+  for (let i = 0; i < 3; i++) {
     const user = await prisma.user.upsert({
       where: { email: `siswa${i + 1}@lms-abk.com` },
       update: {},
       create: {
         email: `siswa${i + 1}@lms-abk.com`,
-        passwordHash: await bcrypt.hash('Siswa123!', 10),
+        passwordHash: await bcrypt.hash(passwords[i], 10),
         role: 'STUDENT_PARENT',
         studentName: studentNames[i],
         parentName: parentNames[i],
@@ -302,10 +306,9 @@ async function main() {
   console.log('  Email: guru@lms-abk.com');
   console.log('  Password: Guru123!');
   console.log('');
-  console.log('SISWA (4 accounts):');
-  for (let i = 1; i <= 4; i++) {
+  console.log('SISWA (3 accounts):');
+  for (let i = 1; i <= 3; i++) {
     console.log(`  ${i}. Email: siswa${i}@lms-abk.com`);
-    console.log(`     Password: Siswa123!`);
   }
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 }
