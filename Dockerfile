@@ -80,5 +80,8 @@ ENV NODE_ENV=production
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
   CMD wget -qO- http://localhost:3001/health || exit 1
 
-# Start the application (migrations are run locally before deploy)
-CMD ["node", "apps/backend/dist/main.js"]
+# Copy prisma migration entrypoint
+COPY --from=builder /app/packages/database/prisma ./packages/database/prisma
+
+# Start: sync DB schema then run app
+CMD ["sh", "-c", "node_modules/.bin/prisma db push --schema=packages/database/prisma/schema.prisma --skip-generate --accept-data-loss && node apps/backend/dist/main.js"]
