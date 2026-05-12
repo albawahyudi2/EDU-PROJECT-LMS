@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 
+// Allow larger file uploads (video up to 20MB + overhead)
+export const runtime = 'nodejs';
+export const maxDuration = 60; // 60 seconds timeout for large uploads
+export const dynamic = 'force-dynamic';
+
 // Initialize R2 client using Vercel environment variables
 function getR2Client() {
   const accountId = process.env.R2_ACCOUNT_ID;
