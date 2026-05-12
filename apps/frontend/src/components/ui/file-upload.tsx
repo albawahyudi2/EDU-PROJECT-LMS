@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, ChangeEvent } from 'react';
+import { useState, useRef, useId, ChangeEvent } from 'react';
 import { Upload, X, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -51,6 +51,8 @@ export function FileUpload({
   const [error, setError] = useState<string | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const uniqueId = useId();
+  const inputId = `file-upload-${uniqueId}`;
   
   // Get token from auth store
   const accessToken = useAuthStore((state) => state.accessToken);
@@ -161,7 +163,7 @@ export function FileUpload({
         <input
           ref={inputRef}
           type="file"
-          id="file-upload"
+          id={inputId}
           className="hidden"
           accept={acceptedTypes}
           onChange={handleFileChange}
@@ -170,7 +172,7 @@ export function FileUpload({
 
         {!file ? (
           <label
-            htmlFor="file-upload"
+            htmlFor={inputId}
             className="flex flex-col items-center cursor-pointer"
           >
             <Upload className="w-12 h-12 text-gray-400 mb-3" />
