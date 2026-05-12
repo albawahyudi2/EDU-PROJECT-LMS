@@ -270,24 +270,43 @@ export default function LessonEditorPage() {
           </CardContent>
         </Card>
 
-        {/* Media Attachments (placeholder for Day 4 scope) */}
+        {/* Materi Pelajaran - Upload & Kelola File */}
         <Card>
           <CardHeader className="pb-3">
             <CardTitle className="text-base flex items-center gap-2">
               <Image className="h-4 w-4" />
-              Media Lampiran
+              Materi Pelajaran
             </CardTitle>
           </CardHeader>
           <CardContent>
-            {lesson.media && lesson.media.length > 0 ? (
-              <div className="space-y-2">
+            <Link href={`/dashboard/classrooms/${classroomId}/subjects/${subjectId}/modules/${moduleId}/lessons/${lessonId}/materials`}>
+              <div className="flex items-center justify-between p-4 rounded-lg border hover:bg-gray-50 cursor-pointer transition-colors">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center">
+                    <FileText className="h-5 w-5 text-orange-600" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium">Upload & Kelola Materi</p>
+                    <p className="text-xs text-muted-foreground">
+                      {lesson.mediaCount || 0} file (PDF, Word, PPT, Gambar, Video)
+                    </p>
+                  </div>
+                </div>
+                <ChevronRight className="h-5 w-5 text-gray-400" />
+              </div>
+            </Link>
+
+            {/* Preview daftar file yang sudah diupload */}
+            {lesson.media && lesson.media.length > 0 && (
+              <div className="mt-3 space-y-1.5">
+                <p className="text-xs font-medium text-gray-500 mb-2">File terlampir:</p>
                 {lesson.media.map((lm: any) => (
                   <div
                     key={lm.id}
-                    className="flex items-center gap-3 p-3 rounded-lg bg-gray-50"
+                    className="flex items-center gap-3 p-2.5 rounded-lg bg-gray-50"
                   >
-                    <div className="w-8 h-8 rounded bg-blue-50 flex items-center justify-center">
-                      {lm.media.type === 'IMAGE' ? '🖼️' : lm.media.type === 'VIDEO' ? '🎥' : lm.media.type === 'PDF' ? '📄' : '🎵'}
+                    <div className="w-7 h-7 rounded bg-blue-50 flex items-center justify-center text-sm">
+                      {lm.media.type === 'IMAGE' ? '🖼️' : lm.media.type === 'VIDEO' ? '🎥' : lm.media.type === 'PDF' ? '📄' : lm.media.type === 'DOCUMENT' ? '📝' : '🎵'}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium truncate">{lm.media.originalName}</p>
@@ -295,16 +314,11 @@ export default function LessonEditorPage() {
                         {lm.media.type} · {(lm.media.size / 1024).toFixed(1)} KB
                       </p>
                     </div>
+                    <a href={lm.media.url} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 hover:underline shrink-0">
+                      Download
+                    </a>
                   </div>
                 ))}
-              </div>
-            ) : (
-              <div className="text-center py-6 border-2 border-dashed rounded-lg">
-                <Image className="h-8 w-8 text-gray-300 mx-auto mb-2" />
-                <p className="text-sm text-muted-foreground mb-1">Belum ada media</p>
-                <p className="text-xs text-muted-foreground">
-                  Fitur upload media akan tersedia dalam update berikutnya
-                </p>
               </div>
             )}
           </CardContent>
