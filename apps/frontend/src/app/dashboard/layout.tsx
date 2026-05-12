@@ -15,8 +15,31 @@ export default function DashboardLayout({
   const router = useRouter();
   const { user, accessToken, fetchMe } = useAuthStore();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
 
+  // Wait for Zustand to hydrate from localStorage before checking auth
   useEffect(() => {
+    // Zustand persist rehydrates synchronously on first render,
+    // but the component may render once with initial (empty) state.
+    // We use a small delay to ensure localStorage data is loaded.
+    const unsubFinishHydration = useAuthStore.persist.onFinishHydration(() => {
+      setIsHydrated(true);
+    });
+
+    // If already hydrated (e.g. fast load), set immediately
+    if (useAuthStore.persist.hasHydrated()) {
+      setIsHydrated(true);
+    }
+
+    return () => {
+      unsubFinishHydration();
+    };
+  }, []);
+
+  // Only redirect to login AFTER hydration is complete
+  useEffect(() => {
+    if (!isHydrated) return;
+
     if (!accessToken) {
       router.push('/login');
       return;
@@ -24,7 +47,16 @@ export default function DashboardLayout({
     if (!user) {
       fetchMe();
     }
-  }, [accessToken, user, fetchMe, router]);
+  }, [isHydrated, accessToken, user, fetchMe, router]);
+
+  // Show loading while hydrating
+  if (!isHydrated) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   if (!accessToken) {
     return null;
