@@ -909,6 +909,7 @@ export class AssignmentsService {
         },
         assignment: {
           include: {
+            taskSteps: { orderBy: { stepNumber: 'asc' } },
             _count: {
               select: { quizQuestions: true, taskSteps: true, submissions: true },
             },
