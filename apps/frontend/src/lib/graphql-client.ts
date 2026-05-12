@@ -968,6 +968,7 @@ export const ASSIGNMENT_QUERIES = {
           id
           stepId
           photoUrl
+          photoUrls
           videoUrl
           status
           comment
@@ -1032,6 +1033,7 @@ export const ASSIGNMENT_QUERIES = {
           id
           stepId
           photoUrl
+          photoUrls
           videoUrl
           status
           comment
