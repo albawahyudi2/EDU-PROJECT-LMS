@@ -1,6 +1,133 @@
-15:37:49.979 Warning: Detected "engines": { "node": ">=18.0.0" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: https://vercel.link/node-version
-15:37:50.766 apps/backend                             |  WARN  Unsupported engine: wanted: {"node":"18.x"} (current: {"node":"v24.14.1","pnpm":"8.15.9"})
-15:37:50.794 (node:45) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
-15:37:50.794 (Use `node --trace-deprecation ...` to show where the warning was created)
-15:38:15.387 node_modules/@prisma/client postinstall: prisma:warn We could not find your Prisma schema at `prisma/schema.prisma`.
-15:38:18.404 apps/backend                             |  WARN  Unsupported engine: wanted: {"node":"18.x"} (current: {"node":"v24.14.1","pnpm":"8.15.9"})
+2026-05-12T13:50:56.730745446Z [inf]  Starting Container
+2026-05-12T13:50:56.877067681Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:50:56.877219686Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:50:56.877226210Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:50:56.877233219Z [inf]  
+2026-05-12T13:50:56.877239497Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:50:56.877246603Z [err]  
+2026-05-12T13:50:57.631594654Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:50:57.631600505Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:50:57.888117109Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:50:57.888128588Z [err]  
+2026-05-12T13:50:57.888136257Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:50:57.888203353Z [inf]  
+2026-05-12T13:50:58.967631683Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:50:58.975490102Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:50:59.025403375Z [inf]  
+2026-05-12T13:50:59.025410041Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:50:59.025416085Z [err]  
+2026-05-12T13:50:59.025422922Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:51:00.342920476Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:51:00.350964027Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:51:00.431255468Z [inf]  
+2026-05-12T13:51:00.431262058Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:51:00.431267991Z [err]  
+2026-05-12T13:51:00.431272073Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:51:01.908734580Z [inf]  
+2026-05-12T13:51:01.908746312Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:51:01.908756484Z [err]  
+2026-05-12T13:51:01.908764358Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:51:01.908855404Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:51:01.908860272Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:51:03.108441295Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:51:03.115948985Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:51:03.161363266Z [inf]  
+2026-05-12T13:51:03.161369730Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:51:03.161374911Z [err]  
+2026-05-12T13:51:03.161379559Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:51:04.443449958Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:51:04.449620562Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:51:04.519707403Z [inf]  
+2026-05-12T13:51:04.519715716Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:51:04.519724619Z [err]  
+2026-05-12T13:51:04.519730062Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:51:05.920563368Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:51:05.920573176Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:51:05.920579861Z [inf]  
+2026-05-12T13:51:05.920585757Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:51:05.920591411Z [err]  
+2026-05-12T13:51:05.920597199Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:51:07.130738530Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:51:07.143579329Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:51:07.203066481Z [inf]  
+2026-05-12T13:51:07.204776792Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:51:07.204785488Z [err]  
+2026-05-12T13:51:07.204792363Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:51:08.421607703Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:51:08.423238155Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:51:08.487502149Z [inf]  
+2026-05-12T13:51:08.487508340Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:51:08.487516456Z [err]  
+2026-05-12T13:51:08.487522347Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:51:09.932918766Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:51:09.932980957Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:51:09.932988236Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:51:09.932994592Z [inf]  
+2026-05-12T13:51:09.932999875Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:51:09.933008240Z [err]  
+2026-05-12T13:51:49.739070272Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:51:49.739076754Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:51:49.795805954Z [inf]  
+2026-05-12T13:51:49.795812605Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:51:49.795819686Z [err]  
+2026-05-12T13:51:49.795826101Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:51:51.125075790Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:51:51.125084395Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:51:51.154487410Z [inf]  
+2026-05-12T13:51:51.154497793Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:51:51.154506118Z [err]  
+2026-05-12T13:51:51.154519514Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:51:52.460854926Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:51:52.468460524Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:51:52.511251084Z [inf]  
+2026-05-12T13:51:52.534948552Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:51:52.534954748Z [err]  
+2026-05-12T13:51:52.534964393Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:51:53.830056705Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:51:53.840104103Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:51:54.127893771Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:51:54.127908131Z [err]  
+2026-05-12T13:51:54.127916410Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:51:54.128061480Z [inf]  
+2026-05-12T13:51:55.418037250Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:51:55.424700092Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:51:55.504055744Z [inf]  
+2026-05-12T13:51:55.504063194Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:51:55.504069185Z [err]  
+2026-05-12T13:51:55.504074953Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:51:56.813872821Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:51:56.826701035Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:51:57.153564762Z [inf]  
+2026-05-12T13:51:57.153577835Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:51:57.153585224Z [err]  
+2026-05-12T13:51:57.153591570Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:51:58.184396317Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:51:58.184404481Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:51:58.249078404Z [inf]  
+2026-05-12T13:51:58.249088557Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:51:58.249095155Z [err]  
+2026-05-12T13:51:58.249101339Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:51:59.558310230Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:51:59.564395380Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:51:59.643446923Z [inf]  
+2026-05-12T13:51:59.643455377Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:51:59.643462547Z [err]  
+2026-05-12T13:51:59.643468593Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:52:01.190148892Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:52:01.190153780Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:52:01.190158532Z [inf]  
+2026-05-12T13:52:01.190163472Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:52:01.190167929Z [err]  
+2026-05-12T13:52:01.190173117Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:52:02.713269833Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:52:02.724509499Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:52:02.801415058Z [inf]  
+2026-05-12T13:52:02.801420382Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T13:52:02.801425064Z [err]  
+2026-05-12T13:52:02.801429769Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:52:03.916747413Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
+2026-05-12T13:52:03.935518296Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
+2026-05-12T13:52:04.191477888Z [err]  
+2026-05-12T13:52:04.191487979Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
+2026-05-12T13:52:04.191513032Z [inf]  
+2026-05-12T13:52:04.191525816Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
