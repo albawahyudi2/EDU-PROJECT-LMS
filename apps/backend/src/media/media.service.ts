@@ -13,7 +13,7 @@ const MAX_FILE_SIZE = {
 
 const ALLOWED_MIME_TYPES = {
   IMAGE: ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'],
-  VIDEO: ['video/mp4', 'video/webm', 'video/quicktime'],
+  VIDEO: ['video/mp4', 'video/webm', 'video/quicktime', 'video/x-msvideo', 'video/x-matroska', 'video/3gpp', 'video/x-flv', 'video/x-ms-wmv', 'video/avi'],
   PDF: ['application/pdf'],
   AUDIO: ['audio/mpeg', 'audio/mp3', 'audio/wav', 'audio/ogg'],
   DOCUMENT: [
