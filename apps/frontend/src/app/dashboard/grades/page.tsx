@@ -57,7 +57,7 @@ export default function GradesPage() {
 
   // Fetch all grades (no limit)
   const { data: gradesData, isLoading: gradesLoading, error: gradesError } = useQuery({
-    queryKey: ['allGrades'],
+    queryKey: ['allGrades', user?.id],
     queryFn: () => graphqlRequest(ASSIGNMENT_QUERIES.RECENT_GRADES, { limit: 100 }, { token: accessToken }),
     enabled: !!accessToken,
   });

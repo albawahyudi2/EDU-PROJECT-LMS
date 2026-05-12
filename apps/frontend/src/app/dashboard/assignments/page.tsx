@@ -68,7 +68,7 @@ export default function AssignmentsPage() {
 
   // Fetch all submissions (includes all statuses)
   const { data: gradesData, isLoading, error } = useQuery({
-    queryKey: ['allAssignments'],
+    queryKey: ['allAssignments', user?.id],
     queryFn: () => graphqlRequest(ASSIGNMENT_QUERIES.RECENT_GRADES, { limit: 100 }, { token: accessToken }),
     enabled: !!accessToken,
   });

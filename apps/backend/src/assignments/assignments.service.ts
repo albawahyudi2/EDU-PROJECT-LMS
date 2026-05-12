@@ -927,10 +927,10 @@ export class AssignmentsService {
       await this.verifyTeacherOwnsLesson(submission.assignment.lessonId, userId);
     } else {
       const student = await this.prisma.student.findUnique({
-        where: { userId },
+        where: { id: submission.studentId },
       });
-      if (!student || student.id !== submission.studentId) {
-        throw new ForbiddenException('Anda tidak memiliki akses ke submission ini');
+      if (!student || (student.userId !== userId && student.parentId !== userId)) {
+        throw new ForbiddenException(`Anda tidak memiliki akses ke submission ini`);
       }
     }
 
@@ -981,10 +981,10 @@ export class AssignmentsService {
       await this.verifyTeacherOwnsLesson(submission.assignment.lessonId, userId);
     } else {
       const student = await this.prisma.student.findUnique({
-        where: { userId },
+        where: { id: submission.studentId },
       });
-      if (!student || student.id !== submission.studentId) {
-        throw new ForbiddenException('Anda tidak memiliki akses ke submission ini');
+      if (!student || (student.userId !== userId && student.parentId !== userId)) {
+        throw new ForbiddenException(`Anda tidak memiliki akses ke submission ini`);
       }
     }
 
@@ -1110,10 +1110,10 @@ export class AssignmentsService {
 
   private async verifyStudentOwnsSubmission(submission: any, studentUserId: string) {
     const student = await this.prisma.student.findUnique({
-      where: { userId: studentUserId },
+      where: { id: submission.studentId },
     });
-    if (!student || student.id !== submission.studentId) {
-      throw new ForbiddenException('Anda tidak memiliki akses ke submission ini');
+    if (!student || (student.userId !== studentUserId && student.parentId !== studentUserId)) {
+      throw new ForbiddenException(`Anda tidak memiliki akses ke submission ini`);
     }
   }
 

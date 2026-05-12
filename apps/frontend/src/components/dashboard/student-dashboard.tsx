@@ -38,7 +38,7 @@ export function StudentDashboard() {
 
   // Fetch recent grades
   const { data: recentGradesData, isLoading: gradesLoading } = useQuery({
-    queryKey: ['recentGrades'],
+    queryKey: ['recentGrades', user?.id],
     queryFn: () => graphqlRequest(ASSIGNMENT_QUERIES.RECENT_GRADES, { limit: 5 }, { token: accessToken }),
     enabled: !!accessToken,
   });
