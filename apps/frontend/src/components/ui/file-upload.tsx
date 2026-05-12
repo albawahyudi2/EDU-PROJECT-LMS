@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useAuthStore } from '@/lib/auth-store';
 
-export type MediaType = 'IMAGE' | 'VIDEO' | 'PDF' | 'AUDIO';
+export type MediaType = 'IMAGE' | 'VIDEO' | 'PDF' | 'AUDIO' | 'DOCUMENT';
 
 interface FileUploadProps {
   onUploadComplete: (mediaId: string, url: string) => void;
@@ -16,20 +16,23 @@ interface FileUploadProps {
   maxSize?: number; // in MB
   className?: string;
   disabled?: boolean;
+  label?: string; // custom button/title label
 }
 
-const DEFAULT_MAX_SIZES = {
+const DEFAULT_MAX_SIZES: Record<MediaType, number> = {
   IMAGE: 5,
   VIDEO: 20,
   PDF: 10,
   AUDIO: 10,
+  DOCUMENT: 20,
 };
 
-const DEFAULT_ACCEPT = {
+const DEFAULT_ACCEPT: Record<MediaType, string> = {
   IMAGE: 'image/jpeg,image/jpg,image/png,image/gif,image/webp',
   VIDEO: 'video/mp4,video/webm,video/quicktime',
   PDF: 'application/pdf',
   AUDIO: 'audio/mpeg,audio/mp3,audio/wav,audio/ogg',
+  DOCUMENT: 'application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/pdf',
 };
 
 export function FileUpload({
@@ -40,6 +43,7 @@ export function FileUpload({
   maxSize,
   className,
   disabled = false,
+  label,
 }: FileUploadProps) {
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);

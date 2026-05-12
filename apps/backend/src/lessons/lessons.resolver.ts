@@ -50,6 +50,26 @@ export class LessonsResolver {
     return this.lessonsService.toggleDraft(lessonId, user.id) as any;
   }
 
+  @Mutation(() => LessonDetailModel, { description: 'Attach uploaded media file to lesson (Teacher only)' })
+  @UseGuards(GqlAuthGuard)
+  async addMediaToLesson(
+    @CurrentUser() user: { id: string },
+    @Args('lessonId') lessonId: string,
+    @Args('mediaId') mediaId: string,
+  ): Promise<LessonDetailModel> {
+    return this.lessonsService.addMediaToLesson(lessonId, mediaId, user.id) as any;
+  }
+
+  @Mutation(() => LessonDetailModel, { description: 'Detach media file from lesson (Teacher only)' })
+  @UseGuards(GqlAuthGuard)
+  async removeMediaFromLesson(
+    @CurrentUser() user: { id: string },
+    @Args('lessonId') lessonId: string,
+    @Args('mediaId') mediaId: string,
+  ): Promise<LessonDetailModel> {
+    return this.lessonsService.removeMediaFromLesson(lessonId, mediaId, user.id) as any;
+  }
+
   @Query(() => [LessonModel], { description: 'Get lessons for a module' })
   @UseGuards(GqlAuthGuard)
   async lessons(
@@ -59,12 +79,20 @@ export class LessonsResolver {
     return this.lessonsService.getLessonsByModule(moduleId, user.id) as any;
   }
 
-  @Query(() => LessonDetailModel, { description: 'Get lesson detail with media' })
+  @Query(() => LessonDetailModel, { description: 'Get lesson detail with media (teacher)' })
   @UseGuards(GqlAuthGuard)
   async lessonDetail(
     @CurrentUser() user: { id: string },
     @Args('lessonId') lessonId: string,
   ): Promise<LessonDetailModel> {
     return this.lessonsService.getLessonDetail(lessonId, user.id) as any;
+  }
+
+  @Query(() => LessonDetailModel, { description: 'Get lesson detail with media (student/parent view)' })
+  @UseGuards(GqlAuthGuard)
+  async lessonDetailStudent(
+    @Args('lessonId') lessonId: string,
+  ): Promise<LessonDetailModel> {
+    return this.lessonsService.getLessonDetailForStudent(lessonId) as any;
   }
 }

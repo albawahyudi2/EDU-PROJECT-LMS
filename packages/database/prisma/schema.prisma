@@ -224,6 +224,7 @@ enum MediaType {
   DOCUMENT
 }
 
+
 model Media {
   id          String    @id @default(cuid())
   filename    String

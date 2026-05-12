@@ -174,13 +174,58 @@ export class LessonsService {
   }
 
   // ============================================
-  // HELPERS
+  // LESSON MEDIA (MATERI PELAJARAN)
   // ============================================
 
-  private async verifyTeacherOwnsModule(moduleId: string, teacherId: string) {
-    const user = await this.prisma.user.findUnique({
-      where: { id: teacherId },
+  async addMediaToLesson(lessonId: string, mediaId: string, teacherId: string) {
+    const lesson = await this.prisma.lesson.findUnique({ where: { id: lessonId } });
+    if (!lesson) throw new NotFoundException('Pelajaran tidak ditemukan');
+    await this.verifyTeacherOwnsModule(lesson.moduleId, teacherId);
+
+    // Get current max order
+    const maxOrder = await this.prisma.lessonMedia.findFirst({
+      where: { lessonId },
+      orderBy: { order: 'desc' },
+      select: { order: true },
     });
+
+    await this.prisma.lessonMedia.upsert({
+      where: { lessonId_mediaId: { lessonId, mediaId } },
+      update: {},
+      create: { lessonId, mediaId, order: (maxOrder?.order ?? -1) + 1 },
+    });
+
+    return this.getLessonDetail(lessonId, teacherId);
+  }
+
+  async removeMediaFromLesson(lessonId: string, mediaId: string, teacherId: string) {
+    const lesson = await this.prisma.lesson.findUnique({ where: { id: lessonId } });
+    if (!lesson) throw new NotFoundException('Pelajaran tidak ditemukan');
+    await this.verifyTeacherOwnsModule(lesson.moduleId, teacherId);
+
+    await this.prisma.lessonMedia.deleteMany({ where: { lessonId, mediaId } });
+
+    return this.getLessonDetail(lessonId, teacherId);
+  }
+
+  async getLessonDetailForStudent(lessonId: string) {
+    const lesson = await this.prisma.lesson.findUnique({
+      where: { id: lessonId, isDraft: false, isActive: true },
+      include: {
+        media: { include: { media: true }, orderBy: { order: 'asc' } },
+        _count: { select: { media: true, assignments: true } },
+      },
+    });
+    if (!lesson) throw new NotFoundException('Pelajaran tidak ditemukan');
+    return {
+      ...lesson,
+      mediaCount: lesson._count.media,
+      assignmentCount: lesson._count.assignments,
+    };
+  }
+
+  private async verifyTeacherOwnsModule(moduleId: string, teacherId: string) {
+    const user = await this.prisma.user.findUnique({ where: { id: teacherId } });
     if (!user || user.role !== 'TEACHER') {
       throw new ForbiddenException('Hanya guru yang dapat mengakses fitur ini');
     }
@@ -189,20 +234,11 @@ export class LessonsService {
       where: { id: moduleId },
       include: { subject: { select: { classroomId: true } } },
     });
-    if (!mod) {
-      throw new NotFoundException('Modul tidak ditemukan');
-    }
+    if (!mod) throw new NotFoundException('Modul tidak ditemukan');
 
     const isTeacher = await this.prisma.classroomTeacher.findUnique({
-      where: {
-        classroomId_teacherId: {
-          classroomId: mod.subject.classroomId,
-          teacherId,
-        },
-      },
+      where: { classroomId_teacherId: { classroomId: mod.subject.classroomId, teacherId } },
     });
-    if (!isTeacher) {
-      throw new ForbiddenException('Anda tidak memiliki akses ke kelas ini');
-    }
+    if (!isTeacher) throw new ForbiddenException('Anda tidak memiliki akses ke kelas ini');
   }
 }
