@@ -209,7 +209,7 @@ export class LessonsService {
   }
 
   async getLessonDetailForStudent(lessonId: string) {
-    const lesson = await this.prisma.lesson.findUnique({
+    const lesson = await this.prisma.lesson.findFirst({
       where: { id: lessonId, isDraft: false, isActive: true },
       include: {
         media: { include: { media: true }, orderBy: { order: 'asc' } },

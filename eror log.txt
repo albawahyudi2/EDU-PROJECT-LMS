@@ -1,133 +1,242 @@
-2026-05-12T13:50:56.730745446Z [inf]  Starting Container
-2026-05-12T13:50:56.877067681Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:50:56.877219686Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:50:56.877226210Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:50:56.877233219Z [inf]  
-2026-05-12T13:50:56.877239497Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:50:56.877246603Z [err]  
-2026-05-12T13:50:57.631594654Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:50:57.631600505Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:50:57.888117109Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:50:57.888128588Z [err]  
-2026-05-12T13:50:57.888136257Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:50:57.888203353Z [inf]  
-2026-05-12T13:50:58.967631683Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:50:58.975490102Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:50:59.025403375Z [inf]  
-2026-05-12T13:50:59.025410041Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:50:59.025416085Z [err]  
-2026-05-12T13:50:59.025422922Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:51:00.342920476Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:51:00.350964027Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:51:00.431255468Z [inf]  
-2026-05-12T13:51:00.431262058Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:51:00.431267991Z [err]  
-2026-05-12T13:51:00.431272073Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:51:01.908734580Z [inf]  
-2026-05-12T13:51:01.908746312Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:51:01.908756484Z [err]  
-2026-05-12T13:51:01.908764358Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:51:01.908855404Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:51:01.908860272Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:51:03.108441295Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:51:03.115948985Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:51:03.161363266Z [inf]  
-2026-05-12T13:51:03.161369730Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:51:03.161374911Z [err]  
-2026-05-12T13:51:03.161379559Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:51:04.443449958Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:51:04.449620562Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:51:04.519707403Z [inf]  
-2026-05-12T13:51:04.519715716Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:51:04.519724619Z [err]  
-2026-05-12T13:51:04.519730062Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:51:05.920563368Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:51:05.920573176Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:51:05.920579861Z [inf]  
-2026-05-12T13:51:05.920585757Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:51:05.920591411Z [err]  
-2026-05-12T13:51:05.920597199Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:51:07.130738530Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:51:07.143579329Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:51:07.203066481Z [inf]  
-2026-05-12T13:51:07.204776792Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:51:07.204785488Z [err]  
-2026-05-12T13:51:07.204792363Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:51:08.421607703Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:51:08.423238155Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:51:08.487502149Z [inf]  
-2026-05-12T13:51:08.487508340Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:51:08.487516456Z [err]  
-2026-05-12T13:51:08.487522347Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:51:09.932918766Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:51:09.932980957Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:51:09.932988236Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:51:09.932994592Z [inf]  
-2026-05-12T13:51:09.932999875Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:51:09.933008240Z [err]  
-2026-05-12T13:51:49.739070272Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:51:49.739076754Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:51:49.795805954Z [inf]  
-2026-05-12T13:51:49.795812605Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:51:49.795819686Z [err]  
-2026-05-12T13:51:49.795826101Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:51:51.125075790Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:51:51.125084395Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:51:51.154487410Z [inf]  
-2026-05-12T13:51:51.154497793Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:51:51.154506118Z [err]  
-2026-05-12T13:51:51.154519514Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:51:52.460854926Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:51:52.468460524Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:51:52.511251084Z [inf]  
-2026-05-12T13:51:52.534948552Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:51:52.534954748Z [err]  
-2026-05-12T13:51:52.534964393Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:51:53.830056705Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:51:53.840104103Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:51:54.127893771Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:51:54.127908131Z [err]  
-2026-05-12T13:51:54.127916410Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:51:54.128061480Z [inf]  
-2026-05-12T13:51:55.418037250Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:51:55.424700092Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:51:55.504055744Z [inf]  
-2026-05-12T13:51:55.504063194Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:51:55.504069185Z [err]  
-2026-05-12T13:51:55.504074953Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:51:56.813872821Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:51:56.826701035Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:51:57.153564762Z [inf]  
-2026-05-12T13:51:57.153577835Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:51:57.153585224Z [err]  
-2026-05-12T13:51:57.153591570Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:51:58.184396317Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:51:58.184404481Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:51:58.249078404Z [inf]  
-2026-05-12T13:51:58.249088557Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:51:58.249095155Z [err]  
-2026-05-12T13:51:58.249101339Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:51:59.558310230Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:51:59.564395380Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:51:59.643446923Z [inf]  
-2026-05-12T13:51:59.643455377Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:51:59.643462547Z [err]  
-2026-05-12T13:51:59.643468593Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:52:01.190148892Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:52:01.190153780Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:52:01.190158532Z [inf]  
-2026-05-12T13:52:01.190163472Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:52:01.190167929Z [err]  
-2026-05-12T13:52:01.190173117Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:52:02.713269833Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:52:02.724509499Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:52:02.801415058Z [inf]  
-2026-05-12T13:52:02.801420382Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
-2026-05-12T13:52:02.801425064Z [err]  
-2026-05-12T13:52:02.801429769Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:52:03.916747413Z [inf]  Prisma schema loaded from packages/database/prisma/schema.prisma
-2026-05-12T13:52:03.935518296Z [inf]  Datasource "db": PostgreSQL database "postgres", schema "public" at "db.tbjqzezotkeivjxevyxy.supabase.co:5432"
-2026-05-12T13:52:04.191477888Z [err]  
-2026-05-12T13:52:04.191487979Z [err]  Please make sure your database server is running at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`.
-2026-05-12T13:52:04.191513032Z [inf]  
-2026-05-12T13:52:04.191525816Z [err]  Error: P1001: Can't reach database server at `db.tbjqzezotkeivjxevyxy.supabase.co`:`5432`
+2026-05-12T14:16:29.622798304Z [inf]  scheduling build on Metal builder "builder-xiyxqt"
+2026-05-12T14:16:33.964559839Z [inf]  [snapshot] received sha256:ed8b525230b1501cbe416bb20cc501e329caf2863621d3569da4a521452d3f6f md5:63e0ce0f1d18c104bc801af9a94a835f
+2026-05-12T14:16:33.964596719Z [inf]  receiving snapshot
+2026-05-12T14:16:34.022737070Z [dbg]  found 'Dockerfile' at 'Dockerfile'
+2026-05-12T14:16:34.022742150Z [dbg]  found 'railway.json' at 'railway.json'
+2026-05-12T14:16:34.022778100Z [inf]  analyzing snapshot
+2026-05-12T14:16:35.348482295Z [inf]  uploading snapshot
+2026-05-12T14:16:35.471928014Z [inf]  unpacking archive
+2026-05-12T14:16:37.612186426Z [inf]  [internal] load build definition from Dockerfile
+2026-05-12T14:16:37.612332026Z [inf]  [internal] load build definition from Dockerfile
+2026-05-12T14:16:37.666597723Z [inf]  [internal] load build definition from Dockerfile
+2026-05-12T14:16:38.078508665Z [inf]  [internal] load build definition from Dockerfile
+2026-05-12T14:16:38.191538075Z [inf]  [internal] load metadata for docker.io/library/node:18-alpine
+2026-05-12T14:16:38.549735180Z [inf]  [internal] load metadata for docker.io/library/node:18-alpine
+2026-05-12T14:16:38.550549640Z [inf]  [internal] load .dockerignore
+2026-05-12T14:16:38.550565460Z [inf]  [internal] load .dockerignore
+2026-05-12T14:16:38.551045771Z [inf]  [internal] load .dockerignore
+2026-05-12T14:16:38.790853902Z [inf]  [internal] load .dockerignore
+2026-05-12T14:16:38.865845788Z [inf]  [runner  6/14] COPY --from=builder /app/packages/types/package.json ./packages/types/
+2026-05-12T14:16:38.865850518Z [inf]  [builder  1/13] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+2026-05-12T14:16:38.865851548Z [inf]  [builder  3/13] RUN npm install -g pnpm@8.15.1
+2026-05-12T14:16:38.865854068Z [inf]  [runner  4/14] COPY --from=builder /app/package.json ./
+2026-05-12T14:16:38.865854358Z [inf]  [runner  5/14] COPY --from=builder /app/packages/database/package.json ./packages/database/
+2026-05-12T14:16:38.865854688Z [inf]  [builder  6/13] COPY packages/database/package.json ./packages/database/
+2026-05-12T14:16:38.865854878Z [inf]  [runner 14/14] RUN mkdir -p node_modules/@lms &&     rm -rf node_modules/@lms/database node_modules/@lms/types &&     ln -s ../../packages/database node_modules/@lms/database &&     ln -s ../../packages/types node_modules/@lms/types
+2026-05-12T14:16:38.865855028Z [inf]  [runner  2/14] RUN apk add --no-cache openssl ca-certificates
+2026-05-12T14:16:38.865855178Z [inf]  [internal] load build context
+2026-05-12T14:16:38.865855328Z [inf]  [builder 11/13] COPY . .
+2026-05-12T14:16:38.865855468Z [inf]  [runner 12/14] COPY --from=builder /app/packages/database/index.js ./packages/database/index.js
+2026-05-12T14:16:38.865855748Z [inf]  [runner 13/14] COPY --from=builder /app/packages/database/index.d.ts ./packages/database/index.d.ts
+2026-05-12T14:16:38.865855898Z [inf]  [builder  7/13] COPY packages/types/package.json ./packages/types/
+2026-05-12T14:16:38.865856028Z [inf]  [builder  8/13] COPY apps/backend/package.json ./apps/backend/
+2026-05-12T14:16:38.865856178Z [inf]  [builder  2/13] RUN apk add --no-cache openssl
+2026-05-12T14:16:38.865856318Z [inf]  [runner  7/14] COPY --from=builder /app/apps/backend/package.json ./apps/backend/
+2026-05-12T14:16:38.865856448Z [inf]  [runner 10/14] COPY --from=builder /app/packages/database/prisma ./packages/database/prisma
+2026-05-12T14:16:38.865856588Z [inf]  [builder  9/13] COPY packages/database/prisma/schema.prisma ./packages/database/prisma/schema.prisma
+2026-05-12T14:16:38.865856718Z [inf]  [runner  3/14] WORKDIR /app
+2026-05-12T14:16:38.865856968Z [inf]  [builder 13/13] RUN pnpm --filter @lms/backend exec nest build
+2026-05-12T14:16:38.865857118Z [inf]  [builder 12/13] RUN pnpm --filter @lms/database exec prisma generate
+2026-05-12T14:16:38.865857248Z [inf]  [builder  5/13] COPY .npmrc package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+2026-05-12T14:16:38.865857388Z [inf]  [builder  4/13] WORKDIR /app
+2026-05-12T14:16:38.865857528Z [inf]  [runner  8/14] COPY --from=builder /app/node_modules ./node_modules
+2026-05-12T14:16:38.865857658Z [inf]  [runner  9/14] COPY --from=builder /app/apps/backend/dist ./apps/backend/dist
+2026-05-12T14:16:38.865857908Z [inf]  [runner 11/14] COPY --from=builder /app/packages/types ./packages/types
+2026-05-12T14:16:38.865860378Z [inf]  [builder 10/13] RUN pnpm install --frozen-lockfile
+2026-05-12T14:16:38.868916600Z [inf]  [builder  1/13] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+2026-05-12T14:16:38.868920510Z [inf]  [internal] load build context
+2026-05-12T14:16:38.890001259Z [inf]  [builder  1/13] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+2026-05-12T14:16:38.893280772Z [inf]  [internal] load build context
+2026-05-12T14:16:39.125544306Z [inf]  [internal] load build context
+2026-05-12T14:16:39.745612751Z [inf]  [builder  2/13] RUN apk add --no-cache openssl
+2026-05-12T14:16:39.745618521Z [inf]  [builder  3/13] RUN npm install -g pnpm@8.15.1
+2026-05-12T14:16:39.745619181Z [inf]  [builder  4/13] WORKDIR /app
+2026-05-12T14:16:39.745619431Z [inf]  [builder  5/13] COPY .npmrc package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+2026-05-12T14:16:39.745619861Z [inf]  [builder  6/13] COPY packages/database/package.json ./packages/database/
+2026-05-12T14:16:39.745620091Z [inf]  [builder  7/13] COPY packages/types/package.json ./packages/types/
+2026-05-12T14:16:39.745620341Z [inf]  [builder  8/13] COPY apps/backend/package.json ./apps/backend/
+2026-05-12T14:16:39.746062962Z [inf]  [builder  9/13] COPY packages/database/prisma/schema.prisma ./packages/database/prisma/schema.prisma
+2026-05-12T14:16:40.817998384Z [inf]  [builder  9/13] COPY packages/database/prisma/schema.prisma ./packages/database/prisma/schema.prisma
+2026-05-12T14:16:40.851008613Z [inf]  [builder 10/13] RUN pnpm install --frozen-lockfile
+2026-05-12T14:16:41.997423641Z [inf]  Scope: all 4 workspace projects
+
+2026-05-12T14:16:42.226141082Z [inf]  
+   ╭──────────────────────────────────────────────────────────────────╮
+   │                                                                  │
+   │                Update available! 8.15.1 → 11.1.1.                │
+   │   Changelog: https://github.com/pnpm/pnpm/releases/tag/v11.1.1   │
+   │                Run "pnpm add -g pnpm" to update.                 │
+   │                                                                  │
+   │      Follow @pnpmjs for updates: https://twitter.com/pnpmjs      │
+   │                                                                  │
+   ╰──────────────────────────────────────────────────────────────────╯
+
+
+2026-05-12T14:16:42.465833263Z [inf]  Lockfile is up to date, resolution step is skipped
+
+2026-05-12T14:16:43.330026093Z [inf]  Packages: +1086
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+2026-05-12T14:16:44.141989816Z [inf]  Progress: resolved 0, reused 0, downloaded 1, added 0
+
+2026-05-12T14:16:45.190610188Z [inf]  Progress: resolved 0, reused 0, downloaded 90, added 79
+
+2026-05-12T14:16:46.233737295Z [inf]  Progress: resolved 0, reused 0, downloaded 272, added 275
+
+2026-05-12T14:16:47.351698498Z [inf]  Progress: resolved 0, reused 0, downloaded 388, added 394
+
+2026-05-12T14:16:48.355312811Z [inf]  Progress: resolved 0, reused 0, downloaded 498, added 517
+
+2026-05-12T14:16:49.365168138Z [inf]  Progress: resolved 0, reused 0, downloaded 703, added 729
+
+2026-05-12T14:16:50.383405063Z [inf]  Progress: resolved 0, reused 0, downloaded 885, added 903
+
+2026-05-12T14:16:51.384022013Z [inf]  Progress: resolved 0, reused 0, downloaded 1048, added 1086
+
+2026-05-12T14:16:51.604350227Z [inf]  Progress: resolved 0, reused 0, downloaded 1048, added 1086, done
+
+2026-05-12T14:16:51.782960174Z [inf]  node_modules/@prisma/engines postinstall$ node scripts/postinstall.js
+
+2026-05-12T14:16:51.868689909Z [inf]  node_modules/@nestjs/core postinstall$ opencollective || exit 0
+
+2026-05-12T14:16:51.870130061Z [inf]  node_modules/@apollo/protobufjs postinstall$ node scripts/postinstall
+
+2026-05-12T14:16:52.004072208Z [inf]  node_modules/core-js-pure postinstall$ node -e "try{require('./postinstall')}catch(e){}"
+
+2026-05-12T14:16:52.145703533Z [inf]  node_modules/core-js-pure postinstall: Thank you for using core-js ( https://github.com/zloirock/core-js ) for polyfilling JavaScript standard library!
+node_modules/core-js-pure postinstall: The project needs your help! Please consider supporting core-js:
+node_modules/core-js-pure postinstall: > https://opencollective.com/core-js 
+node_modules/core-js-pure postinstall: > https://patreon.com/zloirock 
+node_modules/core-js-pure postinstall: > https://boosty.to/zloirock 
+node_modules/core-js-pure postinstall: > bitcoin: bc1qlea7544qtsmj2rayg0lthvza9fau63ux0fstcz 
+
+2026-05-12T14:16:52.145941143Z [inf]  node_modules/core-js-pure postinstall: I highly recommend reading this: https://github.com/zloirock/core-js/blob/master/docs/2023-02-14-so-whats-next.md 
+
+2026-05-12T14:16:52.146940944Z [inf]  node_modules/@apollo/protobufjs postinstall: Done
+
+2026-05-12T14:16:52.155670882Z [inf]  node_modules/core-js-pure postinstall: Done
+
+2026-05-12T14:16:52.360100681Z [inf]  node_modules/@nestjs/core postinstall:                            Thanks for installing nest 
+
+2026-05-12T14:16:52.360333992Z [inf]  node_modules/@nestjs/core postinstall:                  Please consider donating to our open collective
+
+2026-05-12T14:16:52.360489302Z [inf]  node_modules/@nestjs/core postinstall:                         to help us maintain this package.
+
+2026-05-12T14:16:52.360538892Z [inf]  node_modules/@nestjs/core postinstall:                                          
+
+2026-05-12T14:16:52.361791123Z [inf]  node_modules/@nestjs/core postinstall:                             Number of contributors: 0
+node_modules/@nestjs/core postinstall:                              Number of backers: 1197
+
+2026-05-12T14:16:52.469476977Z [inf]  node_modules/@nestjs/core postinstall:                              Annual budget: $136,742
+
+2026-05-12T14:16:52.469668288Z [inf]  node_modules/@nestjs/core postinstall:                              Current balance: $19,946
+node_modules/@nestjs/core postinstall:                                          
+
+2026-05-12T14:16:52.469790568Z [inf]  node_modules/@nestjs/core postinstall:              Become a partner: https://opencollective.com/nest/donate
+
+2026-05-12T14:16:52.469826558Z [inf]  node_modules/@nestjs/core postinstall:                                          
+
+2026-05-12T14:16:52.480888167Z [inf]  node_modules/@nestjs/core postinstall: Done
+
+2026-05-12T14:16:53.044646743Z [inf]  node_modules/@prisma/engines postinstall: Done
+
+2026-05-12T14:16:53.182082844Z [inf]  node_modules/esbuild postinstall$ node install.js
+
+2026-05-12T14:16:53.182416394Z [inf]  node_modules/unrs-resolver postinstall$ napi-postinstall unrs-resolver 1.11.1 check
+
+2026-05-12T14:16:53.346506088Z [inf]  node_modules/prisma preinstall$ node scripts/preinstall-entry.js
+
+2026-05-12T14:16:53.410582225Z [inf]  node_modules/esbuild postinstall: Done
+
+2026-05-12T14:16:53.41671154Z [inf]  node_modules/unrs-resolver postinstall: Done
+
+2026-05-12T14:16:53.463527111Z [inf]  node_modules/prisma preinstall: Done
+
+2026-05-12T14:16:53.56406994Z [inf]  node_modules/@prisma/client postinstall$ node scripts/postinstall.js
+
+2026-05-12T14:16:54.390540777Z [inf]  node_modules/@prisma/client postinstall: prisma:warn We could not find your Prisma schema at `prisma/schema.prisma`.
+node_modules/@prisma/client postinstall: If you have a Prisma schema file in a custom path, you will need to run
+
+2026-05-12T14:16:54.390578526Z [inf]  node_modules/@prisma/client postinstall: `prisma generate --schema=./path/to/your/schema.prisma` to generate Prisma Client.
+
+2026-05-12T14:16:54.390646306Z [inf]  node_modules/@prisma/client postinstall: If you do not have a Prisma schema file yet, you can ignore this message.
+
+2026-05-12T14:16:54.444027664Z [inf]  node_modules/@prisma/client postinstall: Done
+
+2026-05-12T14:16:54.852472043Z [inf]  
+2026-05-12T14:16:54.981477766Z [inf]  apps/backend postinstall$ prisma generate --schema=../../packages/database/prisma/schema.prisma
+
+2026-05-12T14:16:55.762553943Z [inf]  apps/backend postinstall: Prisma schema loaded from ../../packages/database/prisma/schema.prisma
+
+2026-05-12T14:16:57.401422324Z [inf]  apps/backend postinstall: ✔ Generated Prisma Client (4.16.2 | library) to ./../../node_modules/@prisma/client in 526ms
+
+2026-05-12T14:16:57.401651954Z [inf]  apps/backend postinstall: You can now start using Prisma Client in your code. Reference: https://pris.ly/d/client
+
+2026-05-12T14:16:57.401827514Z [inf]  apps/backend postinstall: ```
+
+2026-05-12T14:16:57.401836504Z [inf]  apps/backend postinstall: import { PrismaClient } from '@prisma/client'
+
+2026-05-12T14:16:57.401882944Z [inf]  apps/backend postinstall: const prisma = new PrismaClient()
+
+2026-05-12T14:16:57.401945644Z [inf]  apps/backend postinstall: ```
+
+2026-05-12T14:16:57.448398465Z [inf]  apps/backend postinstall: Done
+
+2026-05-12T14:16:57.450533957Z [inf]  Done in 16s
+
+2026-05-12T14:17:02.353985608Z [inf]  [builder 10/13] RUN pnpm install --frozen-lockfile
+2026-05-12T14:17:02.421965378Z [inf]  [builder 11/13] COPY . .
+2026-05-12T14:17:07.313041587Z [inf]  [builder 11/13] COPY . .
+2026-05-12T14:17:07.359597959Z [inf]  [builder 12/13] RUN pnpm --filter @lms/database exec prisma generate
+2026-05-12T14:17:09.319602951Z [inf]  Prisma schema loaded from prisma/schema.prisma
+
+2026-05-12T14:17:10.6941544Z [inf]  
+✔ Generated Prisma Client (4.16.2 | library) to ./../../node_modules/@prisma/client in 773ms
+You can now start using Prisma Client in your code. Reference: https://pris.ly/d/client
+```
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
+```
+
+2026-05-12T14:17:11.464081767Z [inf]  ┌─────────────────────────────────────────────────────────┐
+│  Update available 4.16.2 -> 7.8.0                       │
+│                                                         │
+│  This is a major update - please follow the guide at    │
+│  https://pris.ly/d/major-version-upgrade                │
+│                                                         │
+│  Run the following to update                            │
+│    npm i --save-dev prisma@latest                       │
+│    npm i @prisma/client@latest                          │
+└─────────────────────────────────────────────────────────┘
+
+2026-05-12T14:17:12.043875467Z [inf]  [builder 12/13] RUN pnpm --filter @lms/database exec prisma generate
+2026-05-12T14:17:12.109756765Z [inf]  [builder 13/13] RUN pnpm --filter @lms/backend exec nest build
+2026-05-12T14:17:19.829560892Z [inf]  [96msrc/lessons/lessons.service.ts[0m:[93m213[0m:[93m30[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'isDraft' does not exist in type 'LessonWhereUniqueInput'.
+
+[7m213[0m       where: { id: lessonId, isDraft: false, isActive: true },
+[7m   [0m [91m                             ~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m12991[0m:[93m5[0m
+    [7m12991[0m     where: LessonWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ rejectOnNotFound?: RejectOnNotFound; select?: LessonSelect<DefaultArgs>; include?: LessonInclude<DefaultArgs>; where: LessonWhereUniqueInput; }'
+[96msrc/lessons/lessons.service.ts[0m:[93m222[0m:[93m26[0m - [91merror[0m[90m TS2339: [0mProperty '_count' does not exist on type 'GetResult<{ id: string; title: string; description: string; content: string; order: number; moduleId: string; createdById: string; isDraft: boolean; isActive: boolean; createdAt: Date; updatedAt: Date; }, unknown> & {}'.
+
+[7m222[0m       mediaCount: lesson._count.media,
+[7m   [0m [91m                         ~~~~~~[0m
+[96msrc/lessons/lessons.service.ts[0m:[93m223[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty '_count' does not exist on type 'GetResult<{ id: string; title: string; description: string; content: string; order: number; moduleId: string; createdById: string; isDraft: boolean; isActive: boolean; createdAt: Date; updatedAt: Date; }, unknown> & {}'.
+
+[7m223[0m       assignmentCount: lesson._count.assignments,
+[7m   [0m [91m                              ~~~~~~[0m
+
+
+2026-05-12T14:17:19.830081012Z [inf]  Found 3 error(s).
+
+
+2026-05-12T14:17:19.901380905Z [inf]  undefined
+
+2026-05-12T14:17:19.904058947Z [inf]  /app/apps/backend:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: nest build
+
+2026-05-12T14:17:25.693463507Z [err]  [builder 13/13] RUN pnpm --filter @lms/backend exec nest build
+2026-05-12T14:17:26.125040037Z [err]  Build Failed: build daemon returned an error < failed to solve: process "/bin/sh -c pnpm --filter @lms/backend exec nest build" did not complete successfully: exit code: 1 >
