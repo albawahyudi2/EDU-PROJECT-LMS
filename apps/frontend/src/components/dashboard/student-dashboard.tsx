@@ -2,7 +2,7 @@
 
 import { useAuthStore } from '@/lib/auth-store';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { BookOpen, ClipboardList, Star, Trophy, Loader2, CheckCircle2 } from 'lucide-react';
+import { Trophy, Loader2, CheckCircle2 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { graphqlRequest, PROGRESS_QUERIES, ASSIGNMENT_QUERIES } from '@/lib/graphql-client';
 import { LevelBadge, XPProgress, SubjectProgressBar } from './progress-components';
@@ -222,62 +222,6 @@ export function StudentDashboard() {
         </Card>
       )}
 
-      {/* Quick Actions */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-        <QuickActionCard
-          title="Pelajaran"
-          description="Mulai belajar materi baru"
-          icon={BookOpen}
-          color="blue"
-          href="/dashboard/lessons"
-        />
-        <QuickActionCard
-          title="Tugas"
-          description="Kerjakan tugas dari guru"
-          icon={ClipboardList}
-          color="green"
-          href="/dashboard/assignments"
-        />
-        <QuickActionCard
-          title="XP & Level"
-          description="Lihat progress XP kamu"
-          icon={Star}
-          color="yellow"
-          href="/dashboard/xp"
-        />
-      </div>
     </div>
-  );
-}
-
-interface QuickActionCardProps {
-  title: string;
-  description: string;
-  icon: React.ElementType;
-  color: 'blue' | 'green' | 'yellow';
-  href: string;
-}
-
-const actionColorClasses = {
-  blue: 'bg-blue-50 border-blue-200 hover:bg-blue-100',
-  green: 'bg-green-50 border-green-200 hover:bg-green-100',
-  yellow: 'bg-yellow-50 border-yellow-200 hover:bg-yellow-100',
-};
-
-const iconColorClasses = {
-  blue: 'text-blue-500',
-  green: 'text-green-500',
-  yellow: 'text-yellow-500',
-};
-
-function QuickActionCard({ title, description, icon: Icon, color }: QuickActionCardProps) {
-  return (
-    <Card className={`cursor-pointer transition-colors border-2 ${actionColorClasses[color]}`}>
-      <CardContent className="p-6">
-        <Icon className={`h-8 w-8 mb-3 ${iconColorClasses[color]}`} />
-        <h3 className="font-semibold text-gray-900 mb-1">{title}</h3>
-        <p className="text-sm text-muted-foreground">{description}</p>
-      </CardContent>
-    </Card>
   );
 }
