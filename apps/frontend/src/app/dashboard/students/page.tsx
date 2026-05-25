@@ -3,11 +3,11 @@
 import { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useAuthStore } from '@/lib/auth-store';
-import { graphqlRequest, USER_QUERIES, USER_MUTATIONS } from '@/lib/graphql-client';
+import { graphqlRequest, USER_QUERIES, USER_MUTATIONS, CLASSROOM_QUERIES } from '@/lib/graphql-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Users, Loader2, Search, GraduationCap, Star, TrendingUp, UserPlus, X } from 'lucide-react';
+import { Users, Loader2, Search, GraduationCap, Star, TrendingUp, UserPlus, X, Eye, EyeOff } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 import Link from 'next/link';
 import { LevelBadge } from '@/components/dashboard/progress-components';
@@ -332,14 +332,15 @@ function CreateStudentModal({
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [classroomId, setClassroomId] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   // Fetch daftar kelas milik guru
   const { data: classroomsData, isLoading: loadingClassrooms } = useQuery({
-    queryKey: ['myClassrooms'],
-    queryFn: () => graphqlRequest(USER_QUERIES.MY_CLASSROOMS, undefined, { token: accessToken }),
+    queryKey: ['classrooms'],
+    queryFn: () => graphqlRequest(CLASSROOM_QUERIES.LIST, undefined, { token: accessToken }),
     enabled: !!accessToken,
   });
-  const classrooms = classroomsData?.myClassrooms || [];
+  const classrooms = classroomsData?.classrooms || [];
 
   // Automatically select the first classroom as the default
   useEffect(() => {
@@ -432,16 +433,30 @@ function CreateStudentModal({
 
           <div className="space-y-2">
             <Label htmlFor="cs-password">Password Sementara *</Label>
-            <input
-              id="cs-password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Minimal 6 karakter"
-              required
-              minLength={6}
-              className="w-full h-9 rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring"
-            />
+            <div className="relative">
+              <input
+                id="cs-password"
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Minimal 6 karakter"
+                required
+                minLength={6}
+                className="w-full h-9 rounded-md border border-input bg-background pl-3 pr-10 py-1 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                aria-label={showPassword ? 'Sembunyikan password' : 'Tampilkan password'}
+              >
+                {showPassword ? (
+                  <EyeOff className="h-4 w-4" />
+                ) : (
+                  <Eye className="h-4 w-4" />
+                )}
+              </button>
+            </div>
             <p className="text-xs text-muted-foreground">
               Berikan password ini kepada orang tua siswa.
             </p>
