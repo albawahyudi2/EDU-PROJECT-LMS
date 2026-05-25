@@ -358,7 +358,7 @@ function CreateStudentModal({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!studentName.trim() || !email.trim() || !password.trim() || !classroomId) return;
+    if (!studentName.trim() || !parentName.trim() || !email.trim() || !password.trim() || !classroomId) return;
 
     createMutation.mutate({
       classroomId,
@@ -388,8 +388,6 @@ function CreateStudentModal({
                 <Loader2 className="h-4 w-4 animate-spin" />
                 <span>Memuat daftar kelas...</span>
               </div>
-            ) : classrooms.length === 0 ? (
-              <p className="text-sm text-destructive">Anda belum memiliki kelas. Buat kelas terlebih dahulu.</p>
             ) : (
               <select
                 id="classroomId"
@@ -422,12 +420,13 @@ function CreateStudentModal({
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="cs-parentName">Nama Orang Tua (opsional)</Label>
+            <Label htmlFor="cs-parentName">Nama Orang Tua *</Label>
             <input
               id="cs-parentName"
               value={parentName}
               onChange={(e) => setParentName(e.target.value)}
               placeholder="Nama orang tua atau wali"
+              required
               className="w-full h-9 rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring"
             />
           </div>
@@ -479,6 +478,7 @@ function CreateStudentModal({
               disabled={
                 isSubmitting ||
                 !studentName.trim() ||
+                !parentName.trim() ||
                 !email.trim() ||
                 !password.trim() ||
                 !classroomId
