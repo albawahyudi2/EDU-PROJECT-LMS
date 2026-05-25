@@ -71,15 +71,20 @@ export default function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       <Navbar mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
-      <div className="flex">
+      <div className="flex flex-1">
         <Sidebar mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
-        <main id="main-content" className="flex-1 p-4 sm:p-6 lg:p-8 ml-0 lg:ml-64">
-          <div className="max-w-7xl mx-auto">
-            {children}
-          </div>
-        </main>
+        <div className="flex-1 flex flex-col ml-0 lg:ml-64">
+          <main id="main-content" className="flex-1 p-4 sm:p-6 lg:p-8">
+            <div className="max-w-7xl mx-auto">
+              {children}
+            </div>
+          </main>
+          <footer className="py-6 border-t bg-white text-center text-xs sm:text-sm text-muted-foreground mt-auto">
+            © 2026 Richard Cristian. All Rights Reserved.
+          </footer>
+        </div>
       </div>
     </div>
   );

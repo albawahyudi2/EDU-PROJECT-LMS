@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useAuthStore } from '@/lib/auth-store';
 import { graphqlRequest, USER_QUERIES, USER_MUTATIONS } from '@/lib/graphql-client';
@@ -341,6 +341,13 @@ function CreateStudentModal({
   });
   const classrooms = classroomsData?.myClassrooms || [];
 
+  // Automatically select the first classroom as the default
+  useEffect(() => {
+    if (classrooms.length > 0 && !classroomId) {
+      setClassroomId(classrooms[0].id);
+    }
+  }, [classrooms, classroomId]);
+
   const createMutation = useMutation({
     mutationFn: (input: any) =>
       graphqlRequest(USER_MUTATIONS.CREATE_STUDENT, { input }, { token: accessToken }),
@@ -380,31 +387,7 @@ function CreateStudentModal({
         </div>
         <form onSubmit={handleSubmit} className="p-4 space-y-4">
 
-          {/* Pilih Kelas */}
-          <div className="space-y-2">
-            <Label htmlFor="classroomId">Kelas *</Label>
-            {loadingClassrooms ? (
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Loader2 className="h-4 w-4 animate-spin" />
-                <span>Memuat daftar kelas...</span>
-              </div>
-            ) : (
-              <select
-                id="classroomId"
-                value={classroomId}
-                onChange={(e) => setClassroomId(e.target.value)}
-                required
-                className="w-full h-9 rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring"
-              >
-                <option value="">-- Pilih Kelas --</option>
-                {classrooms.map((c: any) => (
-                  <option key={c.id} value={c.id}>
-                    {c.name}
-                  </option>
-                ))}
-              </select>
-            )}
-          </div>
+
 
           <div className="space-y-2">
             <Label htmlFor="cs-studentName">Nama Siswa *</Label>
@@ -477,6 +460,7 @@ function CreateStudentModal({
               className="flex-1"
               disabled={
                 isSubmitting ||
+                loadingClassrooms ||
                 !studentName.trim() ||
                 !parentName.trim() ||
                 !email.trim() ||

@@ -151,9 +151,14 @@ export default function LoginPage() {
         </Card>
 
         {/* Footer */}
-        <p className="text-center text-sm text-muted-foreground mt-6">
-          Belum punya akun? Hubungi guru untuk dibuatkan akun.
-        </p>
+        <div className="text-center space-y-4 mt-6">
+          <p className="text-sm text-muted-foreground">
+            Belum punya akun? Hubungi guru untuk dibuatkan akun.
+          </p>
+          <p className="text-xs text-muted-foreground border-t pt-4">
+            © 2026 Richard Cristian. All Rights Reserved.
+          </p>
+        </div>
       </div>
     </div>
   );
