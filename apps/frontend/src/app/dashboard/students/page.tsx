@@ -1,13 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useAuthStore } from '@/lib/auth-store';
-import { graphqlRequest, USER_QUERIES } from '@/lib/graphql-client';
+import { graphqlRequest, USER_QUERIES, USER_MUTATIONS } from '@/lib/graphql-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Users, Loader2, Search, GraduationCap, Star, TrendingUp } from 'lucide-react';
+import { Users, Loader2, Search, GraduationCap, Star, TrendingUp, UserPlus, X } from 'lucide-react';
+import { Label } from '@/components/ui/label';
 import Link from 'next/link';
 import { LevelBadge } from '@/components/dashboard/progress-components';
 import { Badge } from '@/components/ui/badge';
@@ -33,6 +34,7 @@ interface Student {
 export default function StudentsPage() {
   const { user, accessToken } = useAuthStore();
   const [searchQuery, setSearchQuery] = useState('');
+  const [showCreateStudentModal, setShowCreateStudentModal] = useState(false);
 
   // Redirect if not teacher
   if (user?.role !== 'TEACHER') {
@@ -83,6 +85,10 @@ export default function StudentsPage() {
             {students.length} siswa terdaftar
           </p>
         </div>
+        <Button onClick={() => setShowCreateStudentModal(true)}>
+          <UserPlus className="h-4 w-4 mr-2" />
+          Buat Akun Siswa
+        </Button>
       </div>
 
       {/* Search Bar */}
@@ -296,6 +302,194 @@ export default function StudentsPage() {
           </Card>
         </div>
       )}
+
+      {showCreateStudentModal && (
+        <CreateStudentModal
+          onClose={() => setShowCreateStudentModal(false)}
+          onSuccess={() => setShowCreateStudentModal(false)}
+        />
+      )}
+    </div>
+  );
+}
+
+// ============================================
+// CREATE STUDENT MODAL
+// ============================================
+
+function CreateStudentModal({
+  onClose,
+  onSuccess,
+}: {
+  onClose: () => void;
+  onSuccess: () => void;
+}) {
+  const { accessToken } = useAuthStore();
+  const queryClient = useQueryClient();
+
+  const [studentName, setStudentName] = useState('');
+  const [parentName, setParentName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [classroomId, setClassroomId] = useState('');
+
+  // Fetch daftar kelas milik guru
+  const { data: classroomsData, isLoading: loadingClassrooms } = useQuery({
+    queryKey: ['myClassrooms'],
+    queryFn: () => graphqlRequest(USER_QUERIES.MY_CLASSROOMS, undefined, { token: accessToken }),
+    enabled: !!accessToken,
+  });
+  const classrooms = classroomsData?.myClassrooms || [];
+
+  const createMutation = useMutation({
+    mutationFn: (input: any) =>
+      graphqlRequest(USER_MUTATIONS.CREATE_STUDENT, { input }, { token: accessToken }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['myStudents'] });
+      queryClient.invalidateQueries({ queryKey: ['classroom', classroomId] });
+      queryClient.invalidateQueries({ queryKey: ['availableStudents', classroomId] });
+      queryClient.invalidateQueries({ queryKey: ['classrooms'] });
+      onSuccess();
+    },
+  });
+
+  const isSubmitting = createMutation.isPending;
+  const mutationError = createMutation.error;
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!studentName.trim() || !email.trim() || !password.trim() || !classroomId) return;
+
+    createMutation.mutate({
+      classroomId,
+      studentName: studentName.trim(),
+      parentName: parentName.trim() || undefined,
+      email: email.trim(),
+      password,
+    });
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+      <div className="bg-white rounded-lg shadow-lg w-full max-w-md mx-4 max-h-[90vh] overflow-y-auto">
+        <div className="flex items-center justify-between p-4 border-b">
+          <h2 className="text-lg font-semibold">Buat Akun Siswa Baru</h2>
+          <button onClick={onClose} className="p-1 hover:bg-gray-100 rounded">
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+        <form onSubmit={handleSubmit} className="p-4 space-y-4">
+
+          {/* Pilih Kelas */}
+          <div className="space-y-2">
+            <Label htmlFor="classroomId">Kelas *</Label>
+            {loadingClassrooms ? (
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Loader2 className="h-4 w-4 animate-spin" />
+                <span>Memuat daftar kelas...</span>
+              </div>
+            ) : classrooms.length === 0 ? (
+              <p className="text-sm text-destructive">Anda belum memiliki kelas. Buat kelas terlebih dahulu.</p>
+            ) : (
+              <select
+                id="classroomId"
+                value={classroomId}
+                onChange={(e) => setClassroomId(e.target.value)}
+                required
+                className="w-full h-9 rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring"
+              >
+                <option value="">-- Pilih Kelas --</option>
+                {classrooms.map((c: any) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name}
+                  </option>
+                ))}
+              </select>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="cs-studentName">Nama Siswa *</Label>
+            <input
+              id="cs-studentName"
+              value={studentName}
+              onChange={(e) => setStudentName(e.target.value)}
+              placeholder="Nama lengkap siswa"
+              required
+              autoFocus
+              className="w-full h-9 rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="cs-parentName">Nama Orang Tua (opsional)</Label>
+            <input
+              id="cs-parentName"
+              value={parentName}
+              onChange={(e) => setParentName(e.target.value)}
+              placeholder="Nama orang tua atau wali"
+              className="w-full h-9 rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="cs-email">Email Akun *</Label>
+            <input
+              id="cs-email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="email@example.com"
+              required
+              className="w-full h-9 rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring"
+            />
+            <p className="text-xs text-muted-foreground">
+              Digunakan orang tua atau siswa untuk masuk ke platform.
+            </p>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="cs-password">Password Sementara *</Label>
+            <input
+              id="cs-password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Minimal 6 karakter"
+              required
+              minLength={6}
+              className="w-full h-9 rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring"
+            />
+            <p className="text-xs text-muted-foreground">
+              Berikan password ini kepada orang tua siswa.
+            </p>
+          </div>
+
+          {mutationError && (
+            <p className="text-sm text-destructive">{(mutationError as Error).message}</p>
+          )}
+
+          <div className="flex gap-3 pt-2">
+            <Button type="button" variant="outline" className="flex-1" onClick={onClose} disabled={isSubmitting}>
+              Batal
+            </Button>
+            <Button
+              type="submit"
+              className="flex-1"
+              disabled={
+                isSubmitting ||
+                !studentName.trim() ||
+                !email.trim() ||
+                !password.trim() ||
+                !classroomId
+              }
+            >
+              {isSubmitting && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
+              Buat Akun
+            </Button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

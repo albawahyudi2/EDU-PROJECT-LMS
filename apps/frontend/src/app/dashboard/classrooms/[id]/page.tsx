@@ -10,7 +10,6 @@ import {
   CLASSROOM_MUTATIONS,
   SUBJECT_MUTATIONS,
   SUBJECT_QUERIES,
-  USER_MUTATIONS,
 } from '@/lib/graphql-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -55,7 +54,6 @@ export default function ClassroomDetailPage() {
   const [showAddSubject, setShowAddSubject] = useState(false);
   const [editingSubject, setEditingSubject] = useState<any | null>(null);
   const [showEnrollModal, setShowEnrollModal] = useState(false);
-  const [showCreateStudentModal, setShowCreateStudentModal] = useState(false);
   const [deletingSubjectId, setDeletingSubjectId] = useState<string | null>(null);
   const [unenrollingStudent, setUnenrollingStudent] = useState<any | null>(null);
 
@@ -195,18 +193,12 @@ export default function ClassroomDetailPage() {
 
         {/* STUDENTS SECTION */}
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-3 flex-wrap gap-2">
+          <CardHeader className="flex flex-row items-center justify-between pb-3">
             <CardTitle className="text-base">Siswa Terdaftar</CardTitle>
-            <div className="flex gap-2">
-              <Button size="sm" variant="outline" onClick={() => setShowCreateStudentModal(true)}>
-                <UserPlus className="h-3.5 w-3.5 mr-1.5" />
-                Buat Akun
-              </Button>
-              <Button size="sm" onClick={() => setShowEnrollModal(true)}>
-                <Plus className="h-3.5 w-3.5 mr-1.5" />
-                Daftarkan
-              </Button>
-            </div>
+            <Button size="sm" onClick={() => setShowEnrollModal(true)}>
+              <UserPlus className="h-3.5 w-3.5 mr-1.5" />
+              Daftarkan Siswa
+            </Button>
           </CardHeader>
           <CardContent>
             {classroom.students.length === 0 ? (
@@ -293,13 +285,6 @@ export default function ClassroomDetailPage() {
         <EnrollStudentModal
           classroomId={classroomId}
           onClose={() => setShowEnrollModal(false)}
-        />
-      )}
-
-      {showCreateStudentModal && (
-        <CreateStudentModal
-          classroomId={classroomId}
-          onClose={() => setShowCreateStudentModal(false)}
         />
       )}
 
@@ -689,127 +674,4 @@ function UnenrollConfirmModal({
   );
 }
 
-// ============================================
-// CREATE STUDENT MODAL
-// ============================================
 
-function CreateStudentModal({
-  classroomId,
-  onClose,
-}: {
-  classroomId: string;
-  onClose: () => void;
-}) {
-  const { accessToken } = useAuthStore();
-  const queryClient = useQueryClient();
-  
-  const [studentName, setStudentName] = useState('');
-  const [parentName, setParentName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const createMutation = useMutation({
-    mutationFn: (input: any) =>
-      graphqlRequest(USER_MUTATIONS.CREATE_STUDENT, { input }, { token: accessToken }),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['classroom', classroomId] });
-      queryClient.invalidateQueries({ queryKey: ['availableStudents', classroomId] });
-      queryClient.invalidateQueries({ queryKey: ['classrooms'] });
-      onClose();
-    },
-  });
-
-  const isSubmitting = createMutation.isPending;
-  const mutationError = createMutation.error;
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!studentName.trim() || !email.trim() || !password.trim()) return;
-
-    createMutation.mutate({
-      classroomId,
-      studentName: studentName.trim(),
-      parentName: parentName.trim() || undefined,
-      email: email.trim(),
-      password,
-    });
-  };
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="bg-white rounded-lg shadow-lg w-full max-w-md mx-4 max-h-[90vh] overflow-y-auto">
-        <div className="flex items-center justify-between p-4 border-b">
-          <h2 className="text-lg font-semibold">Buat Akun Siswa Baru</h2>
-          <button onClick={onClose} className="p-1 hover:bg-gray-100 rounded">
-            <X className="h-5 w-5" />
-          </button>
-        </div>
-        <form onSubmit={handleSubmit} className="p-4 space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="studentName">Nama Siswa *</Label>
-            <Input
-              id="studentName"
-              value={studentName}
-              onChange={(e) => setStudentName(e.target.value)}
-              placeholder="Nama lengkap siswa"
-              required
-              autoFocus
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="parentName">Nama Orang Tua (opsional)</Label>
-            <Input
-              id="parentName"
-              value={parentName}
-              onChange={(e) => setParentName(e.target.value)}
-              placeholder="Nama orang tua atau wali"
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="email">Email Akun *</Label>
-            <Input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="email@example.com"
-              required
-            />
-            <p className="text-xs text-muted-foreground">
-              Email ini akan digunakan oleh orang tua atau siswa untuk masuk ke platform.
-            </p>
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="password">Password Sementara *</Label>
-            <Input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Minimal 6 karakter"
-              required
-              minLength={6}
-            />
-            <p className="text-xs text-muted-foreground">
-              Berikan password ini kepada orang tua siswa. Password dapat diubah kemudian hari.
-            </p>
-          </div>
-
-          {mutationError && (
-            <p className="text-sm text-red-500">{(mutationError as Error).message}</p>
-          )}
-
-          <div className="flex gap-3 pt-2">
-            <Button type="button" variant="outline" className="flex-1" onClick={onClose} disabled={isSubmitting}>
-              Batal
-            </Button>
-            <Button type="submit" className="flex-1" disabled={isSubmitting || !studentName.trim() || !email.trim() || !password.trim()}>
-              {isSubmitting && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
-              Buat Akun
-            </Button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
-}
