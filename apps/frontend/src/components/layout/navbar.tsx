@@ -98,35 +98,6 @@ export function Navbar({ mobileMenuOpen = false, setMobileMenuOpen }: NavbarProp
           </Button>
         </div>
       </div>
-
-      {/* Mobile Role Switch */}
-      {user?.role === 'STUDENT_PARENT' && mobileMenuOpen && (
-        <div className="sm:hidden border-t p-3 bg-gray-50">
-          <p className="text-xs font-medium text-muted-foreground mb-2">Ganti Mode:</p>
-          <div className="flex gap-2">
-            <button
-              onClick={() => { setViewMode('student'); setMobileMenuOpen?.(false); }}
-              className={`flex-1 px-3 py-2 rounded-md text-sm font-medium ${
-                viewMode === 'student'
-                  ? 'bg-primary text-white'
-                  : 'bg-white border text-gray-700'
-              }`}
-            >
-              Mode Siswa
-            </button>
-            <button
-              onClick={() => { setViewMode('parent'); setMobileMenuOpen?.(false); }}
-              className={`flex-1 px-3 py-2 rounded-md text-sm font-medium ${
-                viewMode === 'parent'
-                  ? 'bg-primary text-white'
-                  : 'bg-white border text-gray-700'
-              }`}
-            >
-              Mode Orang Tua
-            </button>
-          </div>
-        </div>
-      )}
     </header>
   );
 }

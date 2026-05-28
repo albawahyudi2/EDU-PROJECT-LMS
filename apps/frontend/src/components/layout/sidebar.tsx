@@ -64,7 +64,7 @@ const parentNavItems: NavItem[] = [
 
 export function Sidebar({ mobileMenuOpen = false, setMobileMenuOpen }: SidebarProps = {}) {
   const pathname = usePathname();
-  const { user, viewMode } = useAuthStore();
+  const { user, viewMode, setViewMode } = useAuthStore();
 
   let navItems: NavItem[];
   if (user?.role === 'TEACHER') {
@@ -77,6 +77,33 @@ export function Sidebar({ mobileMenuOpen = false, setMobileMenuOpen }: SidebarPr
 
   const NavContent = () => (
     <>
+      {user?.role === 'STUDENT_PARENT' && (
+        <div className="lg:hidden border-b p-4 bg-gray-50">
+          <p className="text-xs font-medium text-muted-foreground mb-2">Ganti Mode:</p>
+          <div className="flex gap-2">
+            <button
+              onClick={() => { setViewMode('student'); setMobileMenuOpen?.(false); }}
+              className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                viewMode === 'student'
+                  ? 'bg-primary text-white shadow-sm'
+                  : 'bg-white border text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              Mode Siswa
+            </button>
+            <button
+              onClick={() => { setViewMode('parent'); setMobileMenuOpen?.(false); }}
+              className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                viewMode === 'parent'
+                  ? 'bg-primary text-white shadow-sm'
+                  : 'bg-white border text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              Mode Orang Tua
+            </button>
+          </div>
+        </div>
+      )}
       <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
         {navItems.map((item) => {
           const isActive = pathname === item.href;

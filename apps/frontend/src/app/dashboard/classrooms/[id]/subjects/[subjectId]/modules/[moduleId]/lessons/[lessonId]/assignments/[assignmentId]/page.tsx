@@ -367,14 +367,14 @@ function TaskStepEditor({
                       )}
                     </div>
                     {step.referenceImage && step.referenceImage !== 'null' && step.referenceImage.trim() !== '' && (
-                      <div className="mt-2">
-                        <p className="text-xs text-muted-foreground mb-1 flex items-center gap-1">
-                          <ImageIcon className="h-3 w-3" /> Gambar referensi:
+                      <div className="mt-2 rounded-lg border border-blue-100 bg-blue-50/50 p-2 max-w-md">
+                        <p className="text-xs text-blue-600 mb-1 flex items-center gap-1 font-medium">
+                          <ImageIcon className="h-3 w-3" /> Gambar Referensi
                         </p>
                         <img 
                           src={step.referenceImage.startsWith('http') ? step.referenceImage : `https://${step.referenceImage}`} 
                           alt="Referensi" 
-                          className="max-h-40 rounded-lg border border-gray-200 object-contain"
+                          className="w-full max-w-[240px] h-auto rounded border border-gray-200 object-contain mt-1" 
                         />
                       </div>
                     )}
@@ -813,7 +813,7 @@ function TaskSubmitter({
                     <img 
                       src={step.referenceImage.startsWith('http') ? step.referenceImage : `https://${step.referenceImage}`} 
                       alt="Referensi" 
-                      className="max-h-48 w-auto rounded-lg border border-gray-200 object-contain" 
+                      className="w-full max-w-xs sm:max-w-sm h-auto rounded-lg border border-gray-200 object-contain mt-1" 
                     />
                   </div>
                 )}
