@@ -366,10 +366,10 @@ function TaskStepEditor({
                         </span>
                       )}
                     </div>
-                    {step.referenceImage && (
+                    {step.referenceImage && step.referenceImage.trim() !== '' && (
                       <div className="mt-2">
                         <img 
-                          src={step.referenceImage.startsWith('http') ? step.referenceImage : `https://${step.referenceImage}`} 
+                          src={step.referenceImage.trim().startsWith('http') ? step.referenceImage.trim() : `https://${step.referenceImage.trim()}`} 
                           alt="Referensi" 
                           className="max-h-32 rounded border border-gray-200 object-contain"
                           onError={(e) => {
@@ -788,10 +788,10 @@ function TaskSubmitter({
                     <span className="text-xs px-1.5 py-0.5 rounded bg-red-100 text-red-700">Wajib</span>
                   )}
                 </div>
-                {step.referenceImage && (
+                {step.referenceImage && step.referenceImage.trim() !== '' && (
                   <div className="mb-4">
                     <img 
-                      src={step.referenceImage.startsWith('http') ? step.referenceImage : `https://${step.referenceImage}`} 
+                      src={step.referenceImage.trim().startsWith('http') ? step.referenceImage.trim() : `https://${step.referenceImage.trim()}`} 
                       alt="Referensi" 
                       className="max-h-48 rounded-lg border border-gray-200 object-contain" 
                       onError={(e) => {
@@ -799,7 +799,7 @@ function TaskSubmitter({
                       }}
                     />
                     <a 
-                      href={step.referenceImage.startsWith('http') ? step.referenceImage : `https://${step.referenceImage}`} 
+                      href={step.referenceImage.trim().startsWith('http') ? step.referenceImage.trim() : `https://${step.referenceImage.trim()}`} 
                       target="_blank" 
                       rel="noreferrer" 
                       className="text-xs text-blue-600 hover:underline mt-1 inline-flex items-center gap-1"
