@@ -365,13 +365,19 @@ function TaskStepEditor({
                           Opsional
                         </span>
                       )}
-                      {step.referenceImage && (
-                        <span className="text-xs text-blue-600 flex items-center gap-1">
-                          <ImageIcon className="h-3 w-3" />
-                          Gambar referensi
-                        </span>
-                      )}
                     </div>
+                    {step.referenceImage && (
+                      <div className="mt-2">
+                        <img 
+                          src={step.referenceImage.startsWith('http') ? step.referenceImage : `https://${step.referenceImage}`} 
+                          alt="Referensi" 
+                          className="max-h-32 rounded border border-gray-200 object-contain"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).style.display = 'none';
+                          }}
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
                 {deletingStepId === step.id ? (
@@ -781,12 +787,27 @@ function TaskSubmitter({
                   {step.isMandatory && (
                     <span className="text-xs px-1.5 py-0.5 rounded bg-red-100 text-red-700">Wajib</span>
                   )}
-                  {step.referenceImage && (
-                    <a href={step.referenceImage} target="_blank" className="text-xs text-blue-600 hover:underline flex items-center gap-1">
-                      <ImageIcon className="h-3 w-3" /> Lihat referensi
-                    </a>
-                  )}
                 </div>
+                {step.referenceImage && (
+                  <div className="mb-4">
+                    <img 
+                      src={step.referenceImage.startsWith('http') ? step.referenceImage : `https://${step.referenceImage}`} 
+                      alt="Referensi" 
+                      className="max-h-48 rounded-lg border border-gray-200 object-contain" 
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = 'none';
+                      }}
+                    />
+                    <a 
+                      href={step.referenceImage.startsWith('http') ? step.referenceImage : `https://${step.referenceImage}`} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      className="text-xs text-blue-600 hover:underline mt-1 inline-flex items-center gap-1"
+                    >
+                      <ImageIcon className="h-3 w-3" /> Buka gambar penuh
+                    </a>
+                  </div>
+                )}
 
                 {!submittedSteps.has(step.id) && (
                   <div className="space-y-3">
