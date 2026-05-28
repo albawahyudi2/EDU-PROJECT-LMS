@@ -366,15 +366,15 @@ function TaskStepEditor({
                         </span>
                       )}
                     </div>
-                    {step.referenceImage && step.referenceImage.trim() !== '' && (
+                    {step.referenceImage && step.referenceImage !== 'null' && step.referenceImage.trim() !== '' && (
                       <div className="mt-2">
+                        <p className="text-xs text-muted-foreground mb-1 flex items-center gap-1">
+                          <ImageIcon className="h-3 w-3" /> Gambar referensi:
+                        </p>
                         <img 
-                          src={step.referenceImage.trim().startsWith('http') ? step.referenceImage.trim() : `https://${step.referenceImage.trim()}`} 
+                          src={step.referenceImage.startsWith('http') ? step.referenceImage : `https://${step.referenceImage}`} 
                           alt="Referensi" 
-                          className="max-h-32 rounded border border-gray-200 object-contain"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).style.display = 'none';
-                          }}
+                          className="max-h-40 rounded-lg border border-gray-200 object-contain"
                         />
                       </div>
                     )}
@@ -435,12 +435,29 @@ function TaskStepEditor({
             </div>
 
             <div className="space-y-2">
-              <Label>Gambar Referensi (URL, opsional)</Label>
-              <Input
-                value={referenceImage}
-                onChange={(e) => setReferenceImage(e.target.value)}
-                placeholder="https://... (opsional)"
+              <Label>Gambar Referensi (opsional)</Label>
+              <FileUpload
+                mediaType="IMAGE"
+                folder="task-steps/reference"
+                onUploadComplete={(_mediaId, url) => setReferenceImage(url)}
+                maxSize={5}
               />
+              {referenceImage && (
+                <div className="mt-2 space-y-1">
+                  <img
+                    src={referenceImage}
+                    alt="Preview"
+                    className="max-h-32 rounded border border-gray-200 object-contain"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setReferenceImage('')}
+                    className="text-xs text-red-500 hover:underline flex items-center gap-1"
+                  >
+                    <X className="h-3 w-3" /> Hapus gambar
+                  </button>
+                </div>
+              )}
             </div>
 
             <div className="flex items-center gap-2">
@@ -783,29 +800,21 @@ function TaskSubmitter({
               </div>
               <div className="flex-1">
                 <p className="text-sm font-medium text-gray-900 mb-1">{step.instruction}</p>
-                <div className="flex items-center gap-2 mb-3">
+                <div className="flex items-center gap-2 mb-2">
                   {step.isMandatory && (
                     <span className="text-xs px-1.5 py-0.5 rounded bg-red-100 text-red-700">Wajib</span>
                   )}
                 </div>
-                {step.referenceImage && step.referenceImage.trim() !== '' && (
-                  <div className="mb-4">
+                {step.referenceImage && step.referenceImage !== 'null' && step.referenceImage.trim() !== '' && (
+                  <div className="mb-4 rounded-lg border border-blue-100 bg-blue-50/50 p-2">
+                    <p className="text-xs text-blue-600 mb-1.5 flex items-center gap-1 font-medium">
+                      <ImageIcon className="h-3 w-3" /> Gambar Referensi
+                    </p>
                     <img 
-                      src={step.referenceImage.trim().startsWith('http') ? step.referenceImage.trim() : `https://${step.referenceImage.trim()}`} 
+                      src={step.referenceImage.startsWith('http') ? step.referenceImage : `https://${step.referenceImage}`} 
                       alt="Referensi" 
-                      className="max-h-48 rounded-lg border border-gray-200 object-contain" 
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).style.display = 'none';
-                      }}
+                      className="max-h-48 w-auto rounded-lg border border-gray-200 object-contain" 
                     />
-                    <a 
-                      href={step.referenceImage.trim().startsWith('http') ? step.referenceImage.trim() : `https://${step.referenceImage.trim()}`} 
-                      target="_blank" 
-                      rel="noreferrer" 
-                      className="text-xs text-blue-600 hover:underline mt-1 inline-flex items-center gap-1"
-                    >
-                      <ImageIcon className="h-3 w-3" /> Buka gambar penuh
-                    </a>
                   </div>
                 )}
 
