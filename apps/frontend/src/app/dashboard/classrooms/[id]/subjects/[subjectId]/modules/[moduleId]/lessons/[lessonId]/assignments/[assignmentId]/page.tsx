@@ -140,7 +140,7 @@ function QuizQuestionEditor({
                   </div>
                   {q.questionImage && (
                     <div className="ml-8 mb-2">
-                      <img src={q.questionImage} alt="Question" className="max-h-32 rounded-lg" />
+                      <img src={q.questionImage.startsWith('http') || q.questionImage.startsWith('/') ? q.questionImage : `https://${q.questionImage}`} alt="Question" className="max-h-32 rounded-lg" />
                     </div>
                   )}
                   <div className="ml-8 grid grid-cols-2 gap-2">
@@ -372,7 +372,7 @@ function TaskStepEditor({
                           <ImageIcon className="h-3 w-3" /> Gambar Referensi
                         </p>
                         <img 
-                          src={step.referenceImage.startsWith('http') ? step.referenceImage : `https://${step.referenceImage}`} 
+                          src={step.referenceImage.startsWith('http') || step.referenceImage.startsWith('/') ? step.referenceImage : `https://${step.referenceImage}`} 
                           alt="Referensi" 
                           className="w-full max-w-[240px] h-auto rounded border border-gray-200 object-contain mt-1" 
                         />
@@ -445,7 +445,7 @@ function TaskStepEditor({
               {referenceImage && (
                 <div className="mt-2 space-y-1">
                   <img
-                    src={referenceImage}
+                    src={referenceImage.startsWith('http') || referenceImage.startsWith('/') ? referenceImage : `https://${referenceImage}`}
                     alt="Preview"
                     className="max-h-32 rounded border border-gray-200 object-contain"
                   />
@@ -629,7 +629,7 @@ function QuizTaker({
         <CardContent className="p-6">
           <p className="text-lg font-medium text-gray-900 mb-4">{q.question}</p>
           {q.questionImage && (
-            <img src={q.questionImage} alt="Question" className="max-h-48 rounded-lg mb-4" />
+            <img src={q.questionImage.startsWith('http') || q.questionImage.startsWith('/') ? q.questionImage : `https://${q.questionImage}`} alt="Question" className="max-h-48 rounded-lg mb-4" />
           )}
           <div className="space-y-2">
             {q.options.map((opt: any) => (
@@ -811,7 +811,7 @@ function TaskSubmitter({
                       <ImageIcon className="h-3 w-3" /> Gambar Referensi
                     </p>
                     <img 
-                      src={step.referenceImage.startsWith('http') ? step.referenceImage : `https://${step.referenceImage}`} 
+                      src={step.referenceImage.startsWith('http') || step.referenceImage.startsWith('/') ? step.referenceImage : `https://${step.referenceImage}`} 
                       alt="Referensi" 
                       className="w-full max-w-xs sm:max-w-sm h-auto rounded-lg border border-gray-200 object-contain mt-1" 
                     />
