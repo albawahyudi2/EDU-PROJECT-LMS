@@ -371,11 +371,31 @@ function TaskStepEditor({
                         <p className="text-xs text-blue-600 mb-1 flex items-center gap-1 font-medium">
                           <ImageIcon className="h-3 w-3" /> Gambar Referensi
                         </p>
-                        <img 
-                          src={step.referenceImage.startsWith('http') || step.referenceImage.startsWith('/') ? step.referenceImage : `https://${step.referenceImage}`} 
-                          alt="Referensi" 
-                          className="w-full max-w-[240px] h-auto rounded border border-gray-200 object-contain mt-1" 
-                        />
+                        <a 
+                          href={step.referenceImage.startsWith('http') ? step.referenceImage : `https://${step.referenceImage}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block"
+                        >
+                          <img 
+                            src={step.referenceImage.startsWith('http') ? step.referenceImage : `https://${step.referenceImage}`}
+                            alt="Gambar Referensi"
+                            crossOrigin="anonymous"
+                            referrerPolicy="no-referrer"
+                            loading="lazy"
+                            className="w-full max-w-[240px] h-auto rounded border border-gray-200 object-contain mt-1"
+                            onError={(e) => {
+                              const target = e.currentTarget;
+                              target.style.display = 'none';
+                              const fallback = target.nextElementSibling as HTMLElement;
+                              if (fallback) fallback.style.display = 'flex';
+                            }}
+                          />
+                          <div style={{ display: 'none' }} className="flex-col items-center justify-center py-3 gap-1 text-center">
+                            <ImageIcon className="h-6 w-6 text-blue-400" />
+                            <span className="text-xs text-blue-600 underline">Tap untuk buka gambar referensi</span>
+                          </div>
+                        </a>
                       </div>
                     )}
                   </div>
@@ -810,11 +830,31 @@ function TaskSubmitter({
                     <p className="text-xs text-blue-600 mb-1.5 flex items-center gap-1 font-medium">
                       <ImageIcon className="h-3 w-3" /> Gambar Referensi
                     </p>
-                    <img 
-                      src={step.referenceImage.startsWith('http') || step.referenceImage.startsWith('/') ? step.referenceImage : `https://${step.referenceImage}`} 
-                      alt="Referensi" 
-                      className="w-full max-w-xs sm:max-w-sm h-auto rounded-lg border border-gray-200 object-contain mt-1" 
-                    />
+                    <a 
+                      href={step.referenceImage.startsWith('http') ? step.referenceImage : `https://${step.referenceImage}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
+                    >
+                      <img 
+                        src={step.referenceImage.startsWith('http') ? step.referenceImage : `https://${step.referenceImage}`}
+                        alt="Gambar Referensi"
+                        crossOrigin="anonymous"
+                        referrerPolicy="no-referrer"
+                        loading="lazy"
+                        className="w-full h-auto rounded-lg border border-gray-200 object-contain mt-1 max-h-72"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          target.style.display = 'none';
+                          const fallback = target.nextElementSibling as HTMLElement;
+                          if (fallback) fallback.style.display = 'flex';
+                        }}
+                      />
+                      <div style={{ display: 'none' }} className="flex-col items-center justify-center py-4 gap-2 text-center">
+                        <ImageIcon className="h-8 w-8 text-blue-400" />
+                        <span className="text-xs text-blue-600 underline">Tap untuk buka gambar referensi</span>
+                      </div>
+                    </a>
                   </div>
                 )}
 
