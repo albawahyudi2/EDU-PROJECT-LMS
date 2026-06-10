@@ -75,7 +75,7 @@ export async function POST(request: NextRequest) {
       ContentType: file.type,
     }));
 
-    const publicUrl = `${process.env.R2_PUBLIC_URL}/${key}`;
+    const publicUrl = `/api/media/${key}`;
 
     // Save to database via Railway backend
     const confirmRes = await fetch(graphqlUrl, {

@@ -20,7 +20,7 @@ import {
   TabsTrigger,
 } from '@/components/ui/tabs';
 import { Image, Video, File, Music, Trash2, Loader2, Copy, Check } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { cn, getMediaUrl } from '@/lib/utils';
 
 interface Media {
   id: string;
@@ -179,7 +179,7 @@ export function MediaLibrary({ onSelect, selectMode = false }: MediaLibraryProps
                   <div className="aspect-square bg-gray-100 flex items-center justify-center p-4">
                     {media.type === 'IMAGE' ? (
                       <img
-                        src={media.url}
+                        src={getMediaUrl(media.url)}
                         alt={media.originalName}
                         className="w-full h-full object-cover"
                       />

@@ -30,6 +30,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/ui/breadcrumbs';
+import { getMediaUrl } from '@/lib/utils';
 
 export default function SubmissionDetailPage() {
   const params = useParams();
@@ -300,8 +301,8 @@ export default function SubmissionDetailPage() {
                           <span className="text-xs px-1.5 py-0.5 rounded bg-red-100 text-red-700">Wajib</span>
                         )}
                       </div>
-                      {step.referenceImage && (
-                        <a href={step.referenceImage} target="_blank" className="text-xs text-blue-600 hover:underline">
+                      {step.referenceImage && getMediaUrl(step.referenceImage) && (
+                        <a href={getMediaUrl(step.referenceImage)} target="_blank" className="text-xs text-blue-600 hover:underline">
                           🖼️ Lihat referensi
                         </a>
                       )}
@@ -312,20 +313,20 @@ export default function SubmissionDetailPage() {
                           {stepSub.photoUrls && stepSub.photoUrls.length > 0 ? (
                             <div className="flex flex-wrap gap-2">
                               {stepSub.photoUrls.map((url: string, i: number) => (
-                                <a key={i} href={url} target="_blank" className="text-xs text-blue-600 hover:underline flex items-center gap-1">
+                                <a key={i} href={getMediaUrl(url)} target="_blank" className="text-xs text-blue-600 hover:underline flex items-center gap-1">
                                   <ImageIcon className="h-3 w-3" /> Foto bukti {i + 1}
                                 </a>
                               ))}
                             </div>
                           ) : stepSub.photoUrl ? (
                             /* Fallback to legacy photoUrl */
-                            <a href={stepSub.photoUrl} target="_blank" className="text-xs text-blue-600 hover:underline flex items-center gap-1">
+                            <a href={getMediaUrl(stepSub.photoUrl)} target="_blank" className="text-xs text-blue-600 hover:underline flex items-center gap-1">
                               <ImageIcon className="h-3 w-3" /> Foto bukti
                             </a>
                           ) : null}
                           
                           {stepSub.videoUrl && (
-                            <a href={stepSub.videoUrl} target="_blank" className="text-xs text-blue-600 hover:underline flex items-center gap-1">
+                            <a href={getMediaUrl(stepSub.videoUrl)} target="_blank" className="text-xs text-blue-600 hover:underline flex items-center gap-1">
                               <Video className="h-3 w-3" /> Video Bukti
                             </a>
                           )}

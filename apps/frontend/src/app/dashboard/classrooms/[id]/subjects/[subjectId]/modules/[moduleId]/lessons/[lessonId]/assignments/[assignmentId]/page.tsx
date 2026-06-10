@@ -37,6 +37,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/ui/breadcrumbs';
+import { getMediaUrl } from '@/lib/utils';
 
 // ============================================
 // TEACHER: Quiz Question Editor
@@ -138,9 +139,9 @@ function QuizQuestionEditor({
                     </span>
                     <p className="font-medium text-gray-900">{q.question}</p>
                   </div>
-                  {q.questionImage && (
+                  {q.questionImage && getMediaUrl(q.questionImage) && (
                     <div className="ml-8 mb-2">
-                      <img src={q.questionImage.startsWith('http') || q.questionImage.startsWith('/') ? q.questionImage : `https://${q.questionImage}`} alt="Question" className="max-h-32 rounded-lg" />
+                      <img src={getMediaUrl(q.questionImage)} alt="Question" className="max-h-32 rounded-lg" />
                     </div>
                   )}
                   <div className="ml-8 grid grid-cols-2 gap-2">
@@ -372,16 +373,14 @@ function TaskStepEditor({
                           <ImageIcon className="h-3 w-3" /> Gambar Referensi
                         </p>
                         <a 
-                          href={step.referenceImage.startsWith('http') ? step.referenceImage : `https://${step.referenceImage}`}
+                          href={getMediaUrl(step.referenceImage)}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="block"
                         >
                           <img 
-                            src={step.referenceImage.startsWith('http') ? step.referenceImage : `https://${step.referenceImage}`}
+                            src={getMediaUrl(step.referenceImage)}
                             alt="Gambar Referensi"
-                            crossOrigin="anonymous"
-                            referrerPolicy="no-referrer"
                             loading="lazy"
                             className="w-full max-w-[240px] h-auto rounded border border-gray-200 object-contain mt-1"
                             onError={(e) => {
@@ -465,7 +464,7 @@ function TaskStepEditor({
               {referenceImage && (
                 <div className="mt-2 space-y-1">
                   <img
-                    src={referenceImage.startsWith('http') || referenceImage.startsWith('/') ? referenceImage : `https://${referenceImage}`}
+                    src={getMediaUrl(referenceImage)}
                     alt="Preview"
                     className="max-h-32 rounded border border-gray-200 object-contain"
                   />
@@ -648,8 +647,8 @@ function QuizTaker({
       <Card>
         <CardContent className="p-6">
           <p className="text-lg font-medium text-gray-900 mb-4">{q.question}</p>
-          {q.questionImage && (
-            <img src={q.questionImage.startsWith('http') || q.questionImage.startsWith('/') ? q.questionImage : `https://${q.questionImage}`} alt="Question" className="max-h-48 rounded-lg mb-4" />
+          {q.questionImage && getMediaUrl(q.questionImage) && (
+            <img src={getMediaUrl(q.questionImage)} alt="Question" className="max-h-48 rounded-lg mb-4" />
           )}
           <div className="space-y-2">
             {q.options.map((opt: any) => (
@@ -831,16 +830,14 @@ function TaskSubmitter({
                       <ImageIcon className="h-3 w-3" /> Gambar Referensi
                     </p>
                     <a 
-                      href={step.referenceImage.startsWith('http') ? step.referenceImage : `https://${step.referenceImage}`}
+                      href={getMediaUrl(step.referenceImage)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block"
                     >
                       <img 
-                        src={step.referenceImage.startsWith('http') ? step.referenceImage : `https://${step.referenceImage}`}
+                        src={getMediaUrl(step.referenceImage)}
                         alt="Gambar Referensi"
-                        crossOrigin="anonymous"
-                        referrerPolicy="no-referrer"
                         loading="lazy"
                         className="w-full h-auto rounded-lg border border-gray-200 object-contain mt-1 max-h-72"
                         onError={(e) => {

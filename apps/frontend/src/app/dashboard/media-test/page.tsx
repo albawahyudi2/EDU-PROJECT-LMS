@@ -4,6 +4,7 @@ import { FileUpload } from '@/components/ui/file-upload';
 import { MediaLibrary } from '@/components/media/media-library';
 import { useState } from 'react';
 import { Card } from '@/components/ui/card';
+import { getMediaUrl } from '@/lib/utils';
 
 export default function MediaTestPage() {
   const [uploadedMedia, setUploadedMedia] = useState<{ id: string; url: string }[]>([]);
@@ -49,7 +50,7 @@ export default function MediaTestPage() {
             {uploadedMedia.map((media) => (
               <div key={media.id} className="border rounded-lg overflow-hidden">
                 <img
-                  src={media.url}
+                  src={getMediaUrl(media.url)}
                   alt="Uploaded"
                   className="w-full h-32 object-cover"
                 />
